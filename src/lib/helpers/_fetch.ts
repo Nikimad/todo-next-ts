@@ -3,6 +3,7 @@
 import qs from "querystring";
 import { cookies } from "next/headers";
 import { Endpoints } from "../endpoints";
+import { Errors } from "../types";
 
 const url = "";
 const scopeKey = "mock-todo-nextjs-ts";
@@ -19,7 +20,7 @@ const _fetch = async (
   endpoint: Endpoints,
   headers?: object,
   body?: object
-): Promise<[object | null, object?]> => {
+): Promise<[any | null, any | null]> => {
   const response = await fetch(`${url}/${endpoint}`, {
     method,
     credentials: "include",
@@ -48,9 +49,9 @@ const _fetch = async (
       });
     }
 
-    return response.ok ? [null, parsedRes] : [parsedRes];
+    return response.ok ? [null, parsedRes] : [parsedRes, null];
   } catch {
-    return [{ error: "Something went wrong" }];
+    return [{ error: "Something went wrong" }, null];
   }
 };
 
