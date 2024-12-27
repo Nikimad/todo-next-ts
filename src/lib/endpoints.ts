@@ -1,1 +1,3 @@
-export enum Endpoints {}
+export enum Endpoints {
+  signin = "/signin",
+}
