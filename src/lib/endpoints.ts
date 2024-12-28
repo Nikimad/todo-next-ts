@@ -1,3 +1,5 @@
 export enum Endpoints {
-  signin = "/signin",
+  authenticate = "users/current",
+  signin = "signin",
+  signup = "signup",
 }
