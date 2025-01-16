@@ -2,22 +2,19 @@
 
 import { cookies as nextCookies } from "next/headers";
 import { HTTP_METHOD } from "next/dist/server/web/http";
-import { Endpoints } from "../endpoints";
-import { FetchWrapperResult } from "../types";
+import { UnknownPayload } from "../types";
 
 const url = "https://interns-test-fe.snp.agency/api/v1";
-
-type AnyDataResult = FetchWrapperResult<{ [key: string]: any }>;
 
 type BodyObj = { [key: string]: unknown };
 
 const _fetch = async (
-  endpoint: Endpoints,
+  endpoint: string,
   options?: {
     method: HTTP_METHOD;
     body?: BodyObj;
   }
-): Promise<AnyDataResult> => {
+): Promise<UnknownPayload> => {
   const cookies = (await nextCookies()).toString();
 
   const headers = new Headers({
@@ -40,20 +37,25 @@ const _fetch = async (
     : [parsedRes];
 };
 
-export const _get = async (endpoint: Endpoints) =>
-  await _fetch(endpoint, { method: "GET" });
-export const _post = async (endpoint: Endpoints, body: BodyObj) =>
+export const _get = async (
+  endpoint: string,
+  searchParams?: URLSearchParams
+) =>
+  await _fetch(
+    `${endpoint}${searchParams ? `/?${searchParams.toString()}` : ""}`,
+    { method: "GET" }
+  );
+export const _post = async (endpoint: string, body: BodyObj) =>
   await _fetch(endpoint, {
     method: "POST",
     body,
   });
-export const _patch = async (endpoint: Endpoints, body: BodyObj) =>
-  await _fetch(endpoint, {
+export const _patch = async (endpoint: string, body: BodyObj) =>
+  await _fetch(`${endpoint}/${body.id}`, {
     method: "PATCH",
     body,
   });
-export const _delete = async (endpoint: Endpoints, body: BodyObj) =>
-  await _fetch(endpoint, {
-    method: "PATCH",
-    body,
+export const _delete = async (endpoint: string, body: BodyObj) =>
+  await _fetch(`${endpoint}/${body.id}`, {
+    method: "DELETE",
   });
