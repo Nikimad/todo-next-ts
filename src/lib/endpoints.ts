@@ -1,5 +1,8 @@
 export enum Endpoints {
-  authenticate = "users/current",
-  signin = "signin",
-  signup = "signup",
+  Authenticate = "users/current",
+  Signin = "signin",
+  Signup = "signup",
+  Index = "tests",
+  List = "questions",
+  Todos = "answers",
 }

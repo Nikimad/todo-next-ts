@@ -1,0 +1,38 @@
+.todo {
+    position: relative;
+    display: grid;
+    gap: var(--gap);
+    background-color: var(--bg-item);
+    border-radius: var(--br);
+    padding: 32px;
+}
+
+.todo__title {
+    padding: 36px 0;
+    margin: 0;
+}
+
+.todo__spinner {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.todo__status {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--gray-blue-dark);
+}
+
+.todo__status_complete {
+    background-color: var(--gray-blue-light);
+}
+
+.todo__controls {
+    display: flex;
+    justify-content: space-between;
+}

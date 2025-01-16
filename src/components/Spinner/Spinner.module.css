@@ -1,0 +1,21 @@
+.spinner {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    border: 5px solid;
+    border-color: var(--gray-blue-extralight) var(--gray-blue-light) var(--gray-blue-dark) var(--gray-blue-extradark);
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

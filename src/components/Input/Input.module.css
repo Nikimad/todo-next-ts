@@ -1,0 +1,30 @@
+.input,
+.input__box {
+  border: 1px solid var(--gray-blue-dark);
+  border-radius: var(--br);
+  padding: var(--padding-primary);
+}
+
+.input {
+  width: 100%;
+  padding-left: var(--indent);
+}
+
+.input__box {
+  transition: var(--trans);
+  cursor: pointer;
+}
+
+.input:where(:checked)+.input__box {
+  background-color: var(--gray-blue-light);
+}
+
+.input__box:active {
+  background-color: var(--gray-blue-extradark);
+}
+
+@media (hover: hover) {
+  .input__box:hover {
+    background-color: var(--gray-blue-dark);
+  }
+}

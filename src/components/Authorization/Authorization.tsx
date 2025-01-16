@@ -1,41 +1,53 @@
-import { FormEvent } from "react";
-import Field from "../Field";
+import type { Errors } from "@/lib/types";
+import type { FormProps } from "../Form";
+
+import Form from "../Form";
+import Input from "../Input";
 import ErrorMessage from "../ErrorMessage";
-import { Errors } from "@/lib/types";
+import Button from "../Button";
+import Spinner from "../Spinner";
+import s from "./Authorization.module.css";
+
+interface AuthorizationFormProps extends FormProps {
+  isLoading: boolean;
+  isSignUp: boolean;
+  errors: Errors;
+}
 
 const Authorization = ({
+  isLoading,
   onSubmit,
   isSignUp,
   errors,
-}: Readonly<{
-  onSubmit: React.EventHandler<FormEvent>;
-  isSignUp: boolean;
-  errors?: Errors | null;
-}>) => (
-  <form onSubmit={onSubmit} id="authorization">
-    <Field
-      label="Username"
-      id="username"
-      name="username"
-      error={errors?.username}
-    />
-    <Field
-      label="Password"
-      id="password"
-      name="password"
-      error={errors?.password}
-    />
+}: AuthorizationFormProps) => (
+  <Form onSubmit={onSubmit} id="authorization">
+    {isLoading && <div className={s.form__spinner}><Spinner /></div>}
+    <label>
+      Username
+      <Input id="username" name="username" />
+      <ErrorMessage name="username" id="username" errors={errors} />
+    </label>
+    <label>
+      Password
+      <Input type="password" id="password" name="password" />
+      <ErrorMessage name="password" id="password" errors={errors} />
+    </label>
     {isSignUp && (
-      <Field
-        label="Password confirmation"
+      <label>
+        Password confirmation
+        <Input
+        type="password_confirmation"
         id="password_confirmation"
         name="password_confirmation"
-        error={errors?.password_confirmation}
       />
+      <ErrorMessage name="passord_confirmation" id="passord_confirmation" errors={errors} />
+      </label>
     )}
-    <button type="submit">Sign {isSignUp ? "up" : "in"}</button>
-    <ErrorMessage id="authorization" error={errors?.error} />
-  </form>
+    <Button type="submit">
+      Sign {isSignUp ? "up" : "in"}
+    </Button>
+    <ErrorMessage id="authorization" name="error" errors={errors} />
+  </Form>
 );
 
 export default Authorization;

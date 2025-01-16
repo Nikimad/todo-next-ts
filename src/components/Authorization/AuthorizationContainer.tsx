@@ -1,19 +1,24 @@
 "use client";
 
-import { startTransition, useActionState, useCallback } from "react";
-import signAction from "@/lib/actions/authorization/sign";
+import {
+  startTransition,
+  useActionState,
+  useCallback,
+  useContext,
+  useEffect,
+} from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { SessionContext } from "../SessionContext";
+import { sign as signAction } from "@/lib/actions/authorization";
 import Authorization from "./Authorization";
-import { UserDataResult } from "@/lib/actions/authorization/types";
-import { usePathname } from "next/navigation";
 
 const AuthorizationContainer = () => {
+  const { replace } = useRouter();
+  const ctx = useContext(SessionContext);
+
   const isSignUp = usePathname() === "/signup";
-  
-  const initialState: UserDataResult = [null];
-  const [[errors, user], sign, isLoading] = useActionState(
-    signAction,
-    initialState
-  );
+
+  const [[errors, scope], sign, isLoading] = useActionState(signAction, [null]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +33,21 @@ const AuthorizationContainer = () => {
     [sign]
   );
 
-  return <Authorization isSignUp={isSignUp} onSubmit={handleSubmit} errors={errors} />;
+  useEffect(() => {
+    if (scope) {
+      ctx?.setScope(scope);
+      replace("/");
+    }
+  }, [scope, ctx, replace]);
+
+  return (
+    <Authorization
+      isLoading={isLoading}
+      isSignUp={isSignUp}
+      onSubmit={handleSubmit}
+      errors={errors}
+    />
+  );
 };
 
 export default AuthorizationContainer;

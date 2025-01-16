@@ -1,0 +1,26 @@
+.form__spinner {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.form__todo {
+    position: relative;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: var(--gap);
+    border: none;
+    padding: 24px 0;
+    margin: 0;
+}
+
+.form__todo__error {
+    position: absolute;
+    bottom: 0;
+}
+
+.form__controls {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+.button {
+    border: none;
+    border-radius: var(--br);
+    background-color: var(--gray-blue-light);
+    transition: var(--trans);
+    cursor: pointer;
+    padding: var(--padding-primary);
+}
+
+.button:active {
+    background-color: var(--gray-blue-extradark);
+}
+
+@media (hover: hover) {
+    .button:hover {
+        background-color: var(--gray-blue-dark);
+    }
+}

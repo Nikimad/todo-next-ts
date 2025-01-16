@@ -1,0 +1,6 @@
+.header {
+    display: flex;
+    gap: var(--gap);
+    justify-content: flex-end;
+    padding: 12px 0;
+}
