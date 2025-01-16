@@ -9,7 +9,7 @@ const Main = () => {
   const ctx = useContext(SessionContext);
   const isUserAuthorized = Boolean(ctx && ctx.isUserHasScope);
 
-  return isUserAuthorized ? <Todos /> : <Banner />;
+  return isUserAuthorized ? <Todos /> : <Banner errors={ctx?.errors || null} />;
 };
 
 export default Main;
