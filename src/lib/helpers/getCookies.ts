@@ -1,5 +1,7 @@
-function getCookie(cookies: string[], name: string) {
-  let matches = cookies.flatMap((cookie) =>
+import { SetCookies } from "../types";
+
+function getCookie(cookies: SetCookies, name: string) {
+  const matches = cookies.flatMap((cookie) =>
     cookie.match(
       new RegExp(
         "(?:^|; )" +
