@@ -1,4 +1,4 @@
-import { TodoEntity } from "../types";
+import { TodoEntity } from "@/lib/actions/todo";
 import Button from "@/components/Button";
 import s from "./Todo.module.css";
 import Spinner from "@/components/Spinner";
