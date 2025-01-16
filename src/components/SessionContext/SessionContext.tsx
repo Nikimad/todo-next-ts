@@ -10,7 +10,7 @@ import { Errors } from "@/lib/types";
 
 interface Session {
   isUserHasScope: boolean;
-  setScope: (scope: Scope) => void;
+  setScope: (scope?: Scope) => void;
   getTodos: () => TodoEntities;
   getScopeKey: () => string;
 }
@@ -27,7 +27,7 @@ const SessionProvider = ({
 }>) => {
   const [scope, setScope] = useState(initialScope);
 
-  const handleSetScope = useCallback((scope: Scope) => setScope(scope), []);
+  const handleSetScope = useCallback((scope?: Scope) => setScope(scope), []);
 
   const getList = useCallback(
     (scope?: Scope) =>
