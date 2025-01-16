@@ -1,1 +1,1 @@
-export { default } from "@/components/Todos";
+export { default } from "@/components/Main";

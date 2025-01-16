@@ -26,13 +26,22 @@ a {
   font: inherit;
 }
 
+button {
+  border: none;
+}
+
 .link {
   text-decoration: none;
   border-radius: var(--br);
   transition: var(--trans);
   background-color: var(--text-secondary-color);
-  color: #ffff;
+  color: var(--bg-item);
+  cursor: pointer;
   padding: var(--padding-secondary);
+}
+
+.link_disabled {
+  pointer-events: none;
 }
 
 .body {
@@ -57,7 +66,7 @@ a {
 }
 
 @media (hover: hover) {
-  .link:hover {
+  .link:hover:not(.link_disabled) {
     color: var(--text-hover-color);
   }
 }

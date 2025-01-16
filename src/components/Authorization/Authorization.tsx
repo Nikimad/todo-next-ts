@@ -36,7 +36,7 @@ const Authorization = ({
       <label>
         Password confirmation
         <Input
-        type="password_confirmation"
+        type="password"
         id="password_confirmation"
         name="password_confirmation"
       />

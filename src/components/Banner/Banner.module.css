@@ -1,0 +1,26 @@
+.banner {
+    display: grid;
+    gap: var(--gap);
+    background-color: var(--bg-item);
+    border-radius: var(--br);
+    padding: 32px;
+    min-height: 238px;
+}
+
+.banner__message {
+    display: grid;
+    gap: var(--gap);
+    border: 1px solid var(--gray-blue-dark);
+    border-radius: var(--br);
+    background-color: var(--gray-blue-light);
+    padding: var(--padding-primary);
+}
+
+.banner__text {
+    margin: 0;
+}
+
+.banner__link {
+    width: fit-content;
+    height: fit-content;
+}

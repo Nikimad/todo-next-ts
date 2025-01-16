@@ -3,6 +3,7 @@
 import { cookies as nextCookies } from "next/headers";
 import { HTTP_METHOD } from "next/dist/server/web/http";
 import { UnknownPayload } from "../types";
+import { errors } from "../errors";
 
 const url = "https://interns-test-fe.snp.agency/api/v1";
 
@@ -34,7 +35,7 @@ const _fetch = async (
 
   return response.ok
     ? [null, parsedRes, response.headers.getSetCookie()]
-    : [parsedRes];
+    : [response.status === 401 ? null : errors["500"]];
 };
 
 export const _get = async (
@@ -55,7 +56,7 @@ export const _patch = async (endpoint: string, body: BodyObj) =>
     method: "PATCH",
     body,
   });
-export const _delete = async (endpoint: string, body: BodyObj) =>
-  await _fetch(`${endpoint}/${body.id}`, {
+export const _delete = async (endpoint: string, body?: BodyObj) =>
+  await _fetch(body ? `${endpoint}/${body.id}` : endpoint, {
     method: "DELETE",
   });

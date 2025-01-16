@@ -8,7 +8,8 @@
 }
 
 .todo__title {
-    padding: 36px 0;
+    font-size: 2em;
+    padding: 40px 0;
     margin: 0;
 }
 
