@@ -1,20 +1,23 @@
-import { FetchWrapperResult } from "@/lib/types";
+import { TodoEntities } from "../todos";
 
-type SigninData = {
-  username: string;
-  password: string;
+export type Scope = {
+  id: number;
+  title: string;
+  questions: List[];
 };
 
-type SignupData = {
-  password_confirmation: string;
-  is_admin: boolean;
-};
-
-type User = {
+export type User = {
   id: string | number;
   username: string;
   is_admin: boolean;
 };
 
-export type InputData = SigninData & SignupData;
-export type UserDataResult = FetchWrapperResult<User>;
+export enum Lists {
+  Todos = "list/todos",
+}
+
+export type List = {
+  id: number;
+  title: Lists.Todos;
+  answers: TodoEntities;
+};

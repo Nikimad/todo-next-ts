@@ -1,23 +1,17 @@
+import type { Payload } from "@/lib/types";
+import type { Scope, User } from "./types";
 import { Endpoints } from "../../endpoints";
-import { UserDataResult } from "./types";
 
 import { _get } from "../../helpers/_fetch";
+import getUserScope from "@/lib/_mocks";
 
-const authenticate = async (): Promise<UserDataResult> => {
-  const [errors, data] = await _get(Endpoints.authenticate);
+export const authenticate = async (): Promise<Payload<Scope>> => {
+  const [errors, user] = (await _get(Endpoints.Authenticate)) as Payload<User>;
 
-  if (data) {
-    return [
-      null,
-      {
-        id: data.id,
-        username: data.username,
-        is_admin: data.is_admin,
-      },
-    ];
+  if (user) {
+    const [errors, scope] = await getUserScope(user);
+    return [errors, scope];
   }
 
   return [errors];
 };
-
-export default authenticate;

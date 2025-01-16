@@ -1,40 +1,49 @@
 "use server";
 
-import { cookies as nextCookies } from "next/headers";
+import type { Payload } from "@/lib/types";
+import { Scope, User } from "./types";
 import { Endpoints } from "../../endpoints";
-import { InputData, UserDataResult } from "./types";
+
+import { cookies as nextCookies } from "next/headers";
 import { _post } from "../../helpers/_fetch";
-import handleFormData from "../../helpers/handleFormData";
+import serializeFormData from "../../helpers/serializeFormData";
 import getCookie from "../../helpers/getCookies";
+import getUserScope from "@/lib/_mocks";
 
-const sign = async (
-  _: UserDataResult,
+export const sign = async (
+  _: Payload<Scope>,
   formData: FormData
-): Promise<UserDataResult> => {
-  const inputData: InputData = handleFormData(formData);
+): Promise<Payload<Scope>> => {
+  const inputData = serializeFormData(formData);
+  const isSignup = "password_confirmation" in inputData;
 
-  const [errors, data, cookies] = await _post(
-    inputData.password_confirmation ? Endpoints.signup : Endpoints.signin,
-    inputData
-  );
+  const payload = {
+    ...inputData,
+    username: inputData.username.toLocaleLowerCase(),// ?search=Username -> 500;
+    is_admin: true,
+  }
+  
+  const [errors, user, setCookies] = (await _post(
+    isSignup ? Endpoints.Signup : Endpoints.Signin,
+    payload
+  )) as Payload<User>;
 
-  if (data && cookies) {
+  if (user && setCookies) {
     const sessionKey = "_session_id";
     const cookiesStore = await nextCookies();
-    const session = getCookie(cookies, sessionKey);
-    session && cookiesStore.set(sessionKey, session);
+    const session = getCookie(setCookies, sessionKey);
+    if (session) cookiesStore.set(sessionKey, session);
+
+    const [errors, scope] = await getUserScope(
+      user,
+      isSignup
+    );
 
     return [
-      null,
-      {
-        id: data.id,
-        username: data.username,
-        is_admin: data.is_admin,
-      },
+      errors,
+      scope,
     ];
   }
 
   return [errors];
 };
-
-export default sign;
