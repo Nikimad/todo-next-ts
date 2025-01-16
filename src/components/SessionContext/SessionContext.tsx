@@ -9,6 +9,7 @@ import { createContext, ReactNode, useCallback, useState } from "react";
 import { Errors } from "@/lib/types";
 
 interface Session {
+  errors: Errors;
   isUserHasScope: boolean;
   setScope: (scope?: Scope) => void;
   getTodos: () => TodoEntities;
@@ -18,6 +19,7 @@ interface Session {
 export const SessionContext = createContext<Session | null>(null);
 
 const SessionProvider = ({
+  errors,
   initialScope,
   children,
 }: Readonly<{
@@ -48,6 +50,7 @@ const SessionProvider = ({
   return (
     <SessionContext.Provider
       value={{
+        errors,
         isUserHasScope: Boolean(scope),
         setScope: handleSetScope,
         getTodos,
