@@ -1,7 +1,1 @@
-import authenticate from "@/lib/actions/authorization/authenticate";
-
-export default async function Home() {
-  const [err, user] = await authenticate();
-
-  return <h1>User: {user?.username}</h1>;
-}
+export { default } from "@/components/Todos";
