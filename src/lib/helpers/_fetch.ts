@@ -55,7 +55,7 @@ export const _patch = async (endpoint: string, body: BodyObj) =>
     method: "PATCH",
     body,
   });
-export const _delete = async (endpoint: string, body: BodyObj) =>
-  await _fetch(`${endpoint}/${body.id}`, {
+export const _delete = async (endpoint: string, body?: BodyObj) =>
+  await _fetch(body ? `${endpoint}/${body.id}` : endpoint, {
     method: "DELETE",
   });
