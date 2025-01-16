@@ -1,0 +1,63 @@
+:root {
+  --text-primary-color: #303544;
+  --text-secondary-color: #303544c7;
+  --text-hover-color: #bfbfbf;
+  --gray-blue-extralight: hsl(222, 28%, 96%);
+  --gray-blue-light: hsl(222, 28%, 93%);
+  --gray-blue-dark: hsl(222, 28%, 86%);
+  --gray-blue-extradark: hsl(222, 28%, 76%);
+  --bg-page: #d1d8e5;
+  --bg-item: #ffff;
+  --trans: 0.3s;
+  --br: 16px;
+  --gap: 8px;
+  --indent: calc(var(--br) / 2);
+  --padding-primary: 16px 32px;
+  --padding-secondary: 12px 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+button,
+a {
+  font: inherit;
+}
+
+.link {
+  text-decoration: none;
+  border-radius: var(--br);
+  transition: var(--trans);
+  background-color: var(--text-secondary-color);
+  color: #ffff;
+  padding: var(--padding-secondary);
+}
+
+.body {
+  font-family: sans-serif;
+  color: var(--text-primary-color);
+  background-color: var(--bg-page);
+  height: 100vh;
+  height: 100svh;
+  width: min(1110px, 100% - 1rem);
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--text-hover-color);
+  }
+}
