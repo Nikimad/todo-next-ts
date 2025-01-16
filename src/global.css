@@ -26,12 +26,17 @@ a {
   font: inherit;
 }
 
+button {
+  border: none;
+}
+
 .link {
   text-decoration: none;
   border-radius: var(--br);
   transition: var(--trans);
   background-color: var(--text-secondary-color);
-  color: #ffff;
+  color: var(--bg-item);
+  cursor: pointer;
   padding: var(--padding-secondary);
 }
 
