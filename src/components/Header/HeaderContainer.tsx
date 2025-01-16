@@ -12,13 +12,13 @@ const HeaderContainer = ({ children }: Readonly<{ children: ReactNode }>) => {
     logout();
   }, [ctx]);
 
-  return isUserAuthorized ? (
+  return !ctx?.errors ? isUserAuthorized ? (
     <button className="link" onClick={handleLogout}>
       Log out
     </button>
   ) : (
     children
-  );
+  ) : null;
 };
 
 export default HeaderContainer;
