@@ -1,10 +1,22 @@
-const ErrorMessage = ({
-  id,
-  error,
-}: Readonly<{ id: string; error?: string | string[] }>) =>
-  error && (
-    <span id={`${id}-error`} aria-live="polite">
-      {typeof error === "string" ? error : error.join(", ")}
+import type { Errors } from "@/lib/types";
+import s from "./ErrrorMessage.module.css";
+
+interface ErrorSpan extends React.HTMLAttributes<HTMLSpanElement> {
+  name: string;
+  errors?: Errors;
+}
+
+const ErrorMessage = ({ id, name, errors, className, ...props }: ErrorSpan) =>
+  errors?.[name] && (
+    <span
+      id={`${id}-error`}
+      aria-live="polite"
+      className={className || s.message}
+      {...props}
+    >
+      {typeof errors[name] === "string"
+        ? errors[name]
+        : errors[name].join(", ")}
     </span>
   );
 
