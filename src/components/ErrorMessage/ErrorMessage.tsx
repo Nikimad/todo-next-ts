@@ -6,18 +6,26 @@ interface ErrorSpan extends React.HTMLAttributes<HTMLSpanElement> {
   errors?: Errors;
 }
 
-const ErrorMessage = ({ id, name, errors, className, ...props }: ErrorSpan) =>
-  errors?.[name] && (
-    <span
-      id={`${id}-error`}
-      aria-live="polite"
-      className={className || s.message}
-      {...props}
-    >
-      {typeof errors[name] === "string"
-        ? errors[name]
-        : errors[name].join(", ")}
-    </span>
+const ErrorMessage = ({ id, name, errors, className, ...props }: ErrorSpan) => {
+  const message = errors?.[name]
+    ? typeof errors?.[name] === "string"
+      ? errors[name]
+      : errors[name].join(", ")
+    : null;
+  const capitalizedMessage =
+    message && `${message.charAt(0).toUpperCase()}${message.slice(1)}`;
+  return (
+    capitalizedMessage && (
+      <span
+        id={`${id}-error`}
+        aria-live="polite"
+        className={className || s.message}
+        {...props}
+      >
+        {capitalizedMessage}
+      </span>
+    )
   );
+};
 
 export default ErrorMessage;
