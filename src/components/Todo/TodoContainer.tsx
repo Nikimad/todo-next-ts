@@ -1,3 +1,4 @@
+import type { TodoRootProps } from "@/lib/actions/todo";
 import { TodoActionsTypes, TodoEntity } from "@/lib/actions/todo";
 
 import {
@@ -14,15 +15,15 @@ import handleForm from "@/lib/helpers/handleForm";
 import Todo from "./Todo";
 import TodoEditor from "../TodoEditor";
 
-type TodoEditorContainerProps = {
-  todo: TodoEntity;
-  removeTodo: (deletedTodo: TodoEntity) => void;
-};
 
-const TodoEditorContainer = ({
+interface TodoContainerProps extends TodoRootProps {
+  removeTodo: (deletedTodo: TodoEntity) => void;
+}
+
+const TodoContainer = ({
   todo,
   removeTodo,
-}: TodoEditorContainerProps) => {
+}: TodoContainerProps) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const prevTodoRef = useRef(todo);
@@ -113,6 +114,7 @@ const TodoEditorContainer = ({
   return !isEdit ? (
     <Todo
       todo={prevTodoRef.current}
+      errors={state.errors}
       isLoading={isLoading}
       onEditStart={handleEditStart}
       onDelete={handleDelete}
@@ -129,4 +131,4 @@ const TodoEditorContainer = ({
   );
 };
 
-export default TodoEditorContainer;
+export default TodoContainer;
