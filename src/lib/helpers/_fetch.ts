@@ -31,17 +31,24 @@ const _fetch = async (
     headers,
   });
 
-  const parsedRes = await response.json();
+  try {
+    const parsedRes = await response.json();
 
-  return response.ok
-    ? [null, parsedRes, response.headers.getSetCookie()]
-    : [response.status === 401 ? null : errors["500"]];
+    return response.ok
+      ? [null, parsedRes, response.headers.getSetCookie()]
+      : [
+          response.status === 401
+            ? null
+            : response.status === 500
+            ? errors["500"]
+            : parsedRes,
+        ];
+  } catch {
+    return [errors["500"]];
+  }
 };
 
-export const _get = async (
-  endpoint: string,
-  searchParams?: URLSearchParams
-) =>
+export const _get = async (endpoint: string, searchParams?: URLSearchParams) =>
   await _fetch(
     `${endpoint}${searchParams ? `/?${searchParams.toString()}` : ""}`,
     { method: "GET" }
