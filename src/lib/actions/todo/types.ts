@@ -1,4 +1,4 @@
-import { Errors } from "@/lib/types";
+import { Concrete, Errors } from "@/lib/types";
 
 export type TodoEntity = {
   id: string | number;
@@ -26,3 +26,11 @@ export type TodoReducer = (
 ) => Promise<TodoState> | TodoState;
 
 export type TodoReducers = Record<TodoActionsTypes, TodoReducer>;
+
+export interface TodoRootProps {
+  todo: TodoEntity;
+  isLoading?: boolean;
+  errors?: Errors;
+}
+
+export type TodoStateProps = Concrete<TodoRootProps>;
