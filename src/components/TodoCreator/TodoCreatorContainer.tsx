@@ -1,17 +1,16 @@
-import type { Errors } from "@/lib/types";
+import type { TodoStateProps } from "@/lib/actions/todo";
 import type { RefObject } from "react";
 
 import { useCallback, useEffect, useRef } from "react";
 import handleForm from "@/lib/helpers/handleForm";
 import TodoCreator from "./TodoCreator";
 
-type TodoCreatorContainerProps = {
-  isLoading: boolean;
-  errors: Errors;
+interface TodoCreatorContainerProps extends TodoStateProps {
   addTodo: (text: string, is_right: boolean) => void;
 };
 
 const TodoCreatorContainer = ({
+  todo,
   isLoading,
   errors,
   addTodo,
@@ -36,6 +35,7 @@ const TodoCreatorContainer = ({
 
   return (
     <TodoCreator
+      todo={todo}
       isLoading={isLoading}
       errors={errors}
       onSubmit={handleAddTodo}
