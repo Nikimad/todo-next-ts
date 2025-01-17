@@ -1,13 +1,11 @@
-import type { Errors } from "@/lib/types";
+import type { TodoStateProps } from "@/lib/actions/todo";
 
 import TodoForm from "../TodoForm";
 import Button from "@/components/Button";
 
 interface TodoCreator
-  extends Readonly<React.FormHTMLAttributes<HTMLFormElement>> {
-  isLoading: boolean;
-  errors: Errors;
-}
+  extends Readonly<React.FormHTMLAttributes<HTMLFormElement>>,
+    TodoStateProps {}
 
 const TodoCreator = ({ errors, isLoading, onSubmit }: TodoCreator) => (
   <TodoForm

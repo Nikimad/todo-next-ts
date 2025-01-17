@@ -13,3 +13,7 @@ export type Payload<Type = undefined, Optional = undefined> = [
 ];
 
 export type UnknownPayload = Payload<{ [key: string]: unknown }, SetCookies>;
+
+export type Concrete<Type> = {
+  [Property in keyof Type]-?: Type[Property];
+};

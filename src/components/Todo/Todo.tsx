@@ -1,14 +1,14 @@
-import { TodoEntity } from "@/lib/actions/todo";
+import type { TodoStateProps } from "@/lib/actions/todo";
+
 import Button from "@/components/Button";
 import s from "./Todo.module.css";
 import Spinner from "@/components/Spinner";
 
-type TodoProps = {
-  todo: TodoEntity;
-  isLoading: boolean;
+
+interface TodoProps extends TodoStateProps  {
   onEditStart: () => void;
   onDelete: () => void;
-};
+}
 
 const Todo = ({ todo, isLoading, onEditStart, onDelete }: TodoProps) => (
   <div className={s.todo}>

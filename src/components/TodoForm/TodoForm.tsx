@@ -1,5 +1,4 @@
-import type { Errors } from "@/lib/types";
-import type { TodoEntity } from "@/lib/actions/todo";
+import type { TodoStateProps } from "@/lib/actions/todo";
 import type { FormProps } from "@/components/Form";
 
 import Form from "@/components/Form";
@@ -8,10 +7,7 @@ import Spinner from "@/components/Spinner";
 import Input from "@/components/Input";
 import s from "./TodoForm.module.css";
 
-interface TodoFormProps extends FormProps {
-  todo: TodoEntity;
-  errors: Errors;
-  isLoading: boolean;
+interface TodoFormProps extends FormProps, TodoStateProps {
   onMount?: (input: HTMLInputElement) => void;
 }
 

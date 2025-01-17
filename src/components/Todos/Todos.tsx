@@ -67,6 +67,11 @@ const Todos = () => {
   return (
     <>
       <TodoCreator
+        todo={{
+          id: "",
+          text: "",
+          is_right: false,
+        }}
         isLoading={isLoading}
         errors={errors}
         addTodo={handleAddTodo}
