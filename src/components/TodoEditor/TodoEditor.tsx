@@ -1,13 +1,11 @@
-import type { Errors } from "@/lib/types";
-import type { TodoEntity } from "@/lib/actions/todo";
+import type { TodoStateProps } from "@/lib/actions/todo";
 
 import Button from "@/components/Button";
 import TodoForm from "../TodoForm";
 
-interface TodoEditorProps extends React.FormHTMLAttributes<HTMLFormElement> {
-  todo: TodoEntity;
-  errors: Errors;
-  isLoading: boolean;
+interface TodoEditorProps
+  extends React.FormHTMLAttributes<HTMLFormElement>,
+    TodoStateProps {
   onMount: (input: HTMLInputElement) => void;
 }
 
