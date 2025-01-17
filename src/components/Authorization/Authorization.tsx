@@ -40,10 +40,10 @@ const Authorization = ({
         id="password_confirmation"
         name="password_confirmation"
       />
-      <ErrorMessage name="passord_confirmation" id="passord_confirmation" errors={errors} />
+      <ErrorMessage name="password_confirmation" id="password_confirmation" errors={errors} />
       </label>
     )}
-    <Button type="submit">
+    <Button type="submit" disabled={isLoading}>
       Sign {isSignUp ? "up" : "in"}
     </Button>
     <ErrorMessage id="authorization" name="error" errors={errors} />
