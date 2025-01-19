@@ -7,7 +7,9 @@ import { createTodo, editTodo, deleteTodo } from "./api";
 
 function* addTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, newTodo]: TodoEntityResponse = yield call(createTodo, payload);
-  yield put(todosActions.addTodoSuccess(payload));
+  if (newTodo) {
+    yield put(todosActions.addTodoSuccess(newTodo));
+  }
 }
 
 function* updateTodoSaga({ payload }: TodoPayloadAction) {
@@ -15,14 +17,18 @@ function* updateTodoSaga({ payload }: TodoPayloadAction) {
     editTodo,
     payload
   );
-  yield put(
-    todosActions.updateTodoSuccess({ id: payload.id, changes: payload })
-  );
+  if (editedTodo) {
+    yield put(
+      todosActions.updateTodoSuccess({ id: payload.id, changes: editedTodo })
+    );
+  }
 }
 
 function* removeTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, meta]: TodoStatusResponse = yield call(deleteTodo, payload);
-  yield put(todosActions.removeTodoSuccess(payload.id));
+  if (meta && meta.status === "ok") {
+    yield put(todosActions.removeTodoSuccess(payload.id));
+  }
 }
 
 export function* todosWatcherSaga() {
