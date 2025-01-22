@@ -1,17 +1,18 @@
 import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import type { TaskEntity } from "../tasks";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 
 export type TodoEntity = {
   id: string | number;
-  taskId: string | number;
+  taskId: TaskEntity["id"];
   text: string;
   is_right: boolean;
-}; //@duplicate
+};
 
 export type TodoStatus = {
   status: string;
-} //@duplicate
+} //@duplicate: BoardStatus, TaskStatus
 
 export type TodoPayloadAction = PayloadAction<TodoEntity>;
 
