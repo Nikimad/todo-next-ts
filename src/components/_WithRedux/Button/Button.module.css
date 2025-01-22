@@ -1,0 +1,14 @@
+.button {
+  background-color: var(--gray-blue-light);
+  border-radius: var(--br);
+  cursor: pointer;
+  transition: var(--trans);
+  padding: 12px;
+}
+
+
+@media (hover: hover) {
+    .button:hover {
+        background-color: var(--gray-blue-dark);
+    }
+}
