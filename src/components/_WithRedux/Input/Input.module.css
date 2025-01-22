@@ -1,0 +1,11 @@
+.input {
+  font: inherit;
+  font-size: 1.5em;
+  background-color: transparent;
+  border-radius: var(--br);
+  box-shadow: 0 0 0 1px var(--gray-blue-dark);
+  border: none;
+  width: 100%;
+  padding: 12px;
+  margin: 0;
+}
