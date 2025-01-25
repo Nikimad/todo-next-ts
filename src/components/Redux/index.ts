@@ -1,1 +1,1 @@
-export { default } from "./ReduxProvider";
+export { default } from "./ReduxProviderContainer";
