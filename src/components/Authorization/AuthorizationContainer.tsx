@@ -4,17 +4,14 @@ import {
   startTransition,
   useActionState,
   useCallback,
-  useContext,
   useEffect,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { SessionContext } from "../SessionContext";
 import { sign as signAction } from "@/lib/actions/authorization";
 import Authorization from "./Authorization";
 
 const AuthorizationContainer = () => {
   const { replace } = useRouter();
-  const ctx = useContext(SessionContext);
 
   const isSignUp = usePathname() === "/signup";
 
@@ -34,11 +31,8 @@ const AuthorizationContainer = () => {
   );
 
   useEffect(() => {
-    if (scope) {
-      ctx?.setScope(scope);
-      replace("/");
-    }
-  }, [scope, ctx, replace]);
+    if (scope) replace("/");
+  }, [scope, replace]);
 
   return (
     <Authorization
