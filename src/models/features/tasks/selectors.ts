@@ -8,4 +8,12 @@ const selectTasksRoot = createSelector(
   ({ tasks }) => tasks
 );
 
-export const tasksSelectors = tasksAdapter.getSelectors(selectTasksRoot);
+const tasksAdapterSelectors = tasksAdapter.getSelectors(selectTasksRoot);
+
+export const tasksSelectors = {
+  ...tasksAdapterSelectors,
+  selectAllByBoardId: (boardId: string) =>
+    createSelector(tasksAdapterSelectors.selectAll, (entities) =>
+      entities.filter((task) => String(task.boardId) === boardId)
+    ),
+};
