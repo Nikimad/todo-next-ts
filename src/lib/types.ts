@@ -1,3 +1,6 @@
+import { Entity, EntityName } from "@/models";
+import { PayloadActionCreator } from "@reduxjs/toolkit";
+
 export type SetCookies = string[];
 export type ScopeKey = string;
 
@@ -17,3 +20,13 @@ export type UnknownPayload = Payload<{ [key: string]: unknown }, SetCookies>;
 export type Concrete<Type> = {
   [Property in keyof Type]-?: Type[Property];
 };
+
+export interface EntityFormContainerProps<EntityType extends Entity> {
+  action: PayloadActionCreator<EntityType>;
+  getEntity: (values: { [key: string]: string }) => EntityType;
+}
+
+export interface EntityProps<EntityType extends Entity> {
+  entity: EntityType;
+  entityName: EntityName<EntityType>;
+}
