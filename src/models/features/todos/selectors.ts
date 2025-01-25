@@ -8,4 +8,12 @@ const selectTodosRoot = createSelector(
   ({ todos }) => todos
 );
 
-export const todosSelectors = todosAdapter.getSelectors(selectTodosRoot);
+const todosAdapterSelectors = todosAdapter.getSelectors(selectTodosRoot);
+
+export const todosSelectors = {
+  ...todosAdapterSelectors,
+  selectAllByTaskId: (taskId: string) =>
+    createSelector(todosAdapterSelectors.selectAll, (entities) =>
+      entities.filter((todo) => String(todo.taskId) === taskId)
+    ),
+};

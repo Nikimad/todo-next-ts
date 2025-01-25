@@ -8,7 +8,12 @@ import { createTodo, editTodo, deleteTodo } from "./api";
 function* addTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, newTodo]: TodoEntityResponse = yield call(createTodo, payload);
   if (newTodo) {
-    yield put(todosActions.addTodoSuccess(newTodo));
+    yield put(
+      todosActions.addTodoSuccess({
+        ...newTodo,
+        taskId: payload.taskId,
+      })
+    );
   }
 }
 
