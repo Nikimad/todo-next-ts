@@ -31,6 +31,8 @@ const _fetch = async (
     headers,
   });
 
+  console.log(`${url}/${endpoint}`)
+
   try {
     const parsedRes = await response.json();
 
