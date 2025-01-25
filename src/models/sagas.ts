@@ -1,10 +1,16 @@
 import { all } from "redux-saga/effects";
-import { todosWatcherSaga } from "./features/todos/sagas";
-import { tasksWatcherSaga } from "./features/tasks/sagas";
+import { sessionWatcherSaga } from "./features/session/sagas";
 import { boardsWatcherSaga } from "./features/boards/sagas";
+import { tasksWatcherSaga } from "./features/tasks/sagas";
+import { todosWatcherSaga } from "./features/todos/sagas";
 
 function* rootSaga() {
-  yield all([todosWatcherSaga(), tasksWatcherSaga(), boardsWatcherSaga()]);
+  yield all([
+    sessionWatcherSaga(),
+    boardsWatcherSaga(),
+    tasksWatcherSaga(),
+    todosWatcherSaga(),
+  ]);
 }
 
 export default rootSaga;
