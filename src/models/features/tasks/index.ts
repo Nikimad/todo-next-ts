@@ -1,7 +1,16 @@
 import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import type { BoardEntity } from "../boards";
+import { boardsActions, UnnormolizeBoardEntity, type BoardEntity } from "../boards";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { TodoEntity } from "../todos";
+import { UnnormolizeState } from "@/models";
+
+export type UnnormolizeTaskEntity = {
+  id: string | number;
+  title: string;
+  question_type: "multiple";
+  answers: TodoEntity[];
+};
 
 export type TaskEntity = {
   id: string | number;
@@ -12,7 +21,7 @@ export type TaskEntity = {
 
 export type TaskStatus = {
   status: string;
-} //@duplicate: BoardStatus, TodoStatus
+}; //@duplicate: BoardStatus, TodoStatus
 
 export type TaskPayloadAction = PayloadAction<TaskEntity>;
 
@@ -27,13 +36,30 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState: tasksAdapter.getInitialState(),
   reducers: {
-    addTodo: delegateActionToSaga,
-    updateTodo: delegateActionToSaga,
-    removeTodo: delegateActionToSaga,
-    addTodoSuccess: tasksAdapter.addOne,
-    updateTodoSuccess: tasksAdapter.updateOne,
-    removeTodoSuccess: tasksAdapter.removeOne,
+    addTask: delegateActionToSaga,
+    updateTask: delegateActionToSaga,
+    removeTask: delegateActionToSaga,
+    addTaskSuccess: tasksAdapter.addOne,
+    updateTaskSuccess: tasksAdapter.updateOne,
+    removeTaskSuccess: tasksAdapter.removeOne,
   },
+  extraReducers: (builer) =>
+    builer.addCase(
+      boardsActions.setBoards,
+      (state, { payload: { boards } }: PayloadAction<UnnormolizeState>) => {
+        const normolizedTasks: TaskEntity[] = boards.flatMap(
+          ({ id: boardId, questions }: UnnormolizeBoardEntity) =>
+            questions.map(({ title, id }) => ({
+              id,
+              boardId,
+              title,
+              question_type: "multiple",
+            }))
+        );
+        
+        tasksAdapter.setAll(state, normolizedTasks);
+      }
+    ),
 });
 
 export const tasksActions = tasksSlice.actions;
