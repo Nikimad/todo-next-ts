@@ -1,7 +1,6 @@
 import s from "./Button.module.css";
 
-export interface ButtonProps
-  extends Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>> {}
+type ButtonProps = Readonly<React.ButtonHTMLAttributes<HTMLButtonElement>>;
 
 const Button = ({ className, ...props }: ButtonProps) => <button className={className || s.button} {...props} />; 
 
