@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Funnel_Sans } from "next/font/google";
 import "@/global.css";
-import Header from "@/components/Header";
-import SessionProvider from "@/components/SessionContext";
+import Link from "next/link";
+import ReduxProvider from "@/components/Redux";
+import Header from "@/components/_WithRedux/Header";
+import Main from "@/components/_WithRedux/Main";
 
 const hankenGrotesk = Funnel_Sans({
   subsets: ["latin"],
@@ -21,10 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`body ${hankenGrotesk.className}`}>
-        <SessionProvider>
-          <Header />
-          <main>{children}</main>
-        </SessionProvider>
+        <ReduxProvider>
+          <Header>
+            <Link href="/signin">Sign in</Link>
+            <Link href="/signup">Sign up</Link>
+          </Header>
+          <Main>{children}</Main>
+        </ReduxProvider>
       </body>
     </html>
   );
