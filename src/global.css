@@ -55,6 +55,12 @@ button {
   margin: 0 auto;
 }
 
+.styled-wrapper {
+  background-color: var(--bg-item);
+  border-radius: var(--br);
+  padding: 32px;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
