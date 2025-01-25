@@ -1,0 +1,21 @@
+.fields__container {
+    display: grid;
+    gap: var(--gap);
+}
+
+.fields,
+.fields__controls,
+.fields__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.fields__controls {
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-left: auto;
+}
+
+

@@ -1,0 +1,17 @@
+.list {
+    display: grid;
+    gap: var(--gap);
+    padding: 0;
+    margin: 0;
+}
+
+.list__container {
+    height: 500px;
+}
+
+.list__container_empty {
+    display: grid;
+    place-content: center;
+    font-weight: bold;
+    color: var(--gray-blue-extradark);
+}
