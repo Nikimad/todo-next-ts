@@ -8,7 +8,10 @@ import { createTask, editTask, deleteTask } from "./api";
 function* addTaskSaga({ payload }: TaskPayloadAction) {
   const [errors, newTodo]: TaskEntityResponse = yield call(createTask, payload);
   if (newTodo) {
-    yield put(tasksActions.addTodoSuccess(newTodo));
+    yield put(tasksActions.addTaskSuccess({
+      ...newTodo,
+      boardId: payload.boardId,
+    }));
   }
 }
 
@@ -19,7 +22,7 @@ function* updateTaskSaga({ payload }: TaskPayloadAction) {
   );
   if (editedTodo) {
     yield put(
-      tasksActions.updateTodoSuccess({ id: payload.id, changes: editedTodo })
+      tasksActions.updateTaskSuccess({ id: payload.id, changes: editedTodo })
     );
   }
 }
@@ -27,12 +30,12 @@ function* updateTaskSaga({ payload }: TaskPayloadAction) {
 function* removeTaskSaga({ payload }: TaskPayloadAction) {
   const [errors, meta]: TaskStatusResponse = yield call(deleteTask, payload);
   if (meta && meta.status === "ok") {
-    yield put(tasksActions.removeTodoSuccess(payload.id));
+    yield put(tasksActions.removeTaskSuccess(payload.id));
   }
 }
 
 export function* tasksWatcherSaga() {
-  yield takeEvery(tasksActions.addTodo, addTaskSaga);
-  yield takeEvery(tasksActions.updateTodo, updateTaskSaga);
-  yield takeEvery(tasksActions.removeTodo, removeTaskSaga);
+  yield takeEvery(tasksActions.addTask, addTaskSaga);
+  yield takeEvery(tasksActions.updateTask, updateTaskSaga);
+  yield takeEvery(tasksActions.removeTask, removeTaskSaga);
 }
