@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import type { Entity } from "@/models";
 import type { EntityProps, Errors } from "@/lib/types";
 
@@ -15,18 +14,14 @@ interface EntityFormFieldsProps<EntityType extends Entity>
   onMount?: (input: HTMLInputElement) => void;
 }
 
-type EntityFormFieldsElement = <EntityType extends Entity>(
-  props: Readonly<EntityFormFieldsProps<EntityType>>
-) => JSX.Element;
-
-const EntityFormFields: EntityFormFieldsElement = ({
+const EntityFormFields = <EntityType extends Entity>({
   entity,
   errors,
   entityName,
   fieldsName,
   onMount,
   children,
-}) => (
+}: Readonly<EntityFormFieldsProps<EntityType>>) => (
   <div className={s.fields__container}>
     <div className={s.fields}>
       <input type="hidden" name="id" defaultValue={entity.id} />

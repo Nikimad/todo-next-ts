@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import type { Entity, EntityName } from "@/models";
 import s from "./EntitiesList.module.css";
 
@@ -9,20 +8,21 @@ interface EntitiesListProps<EntityType extends Entity> {
   children: React.ReactNode;
 }
 
-type EntitiesListElement = <EntityType extends Entity>(
-  props: EntitiesListProps<EntityType>
-) => JSX.Element;
-
-const EntitiesList: EntitiesListElement = ({
+const EntitiesList = <EntityType extends Entity>({
   name,
   isQuery,
   isEmpty,
   children,
-}) => (
-  <div className={` ${s.list__container} ${isEmpty ? s.list__container_empty : ""}`}>
+}: Readonly<EntitiesListProps<EntityType>>) => (
+  <div
+    className={` ${s.list__container} ${
+      isEmpty ? s.list__container_empty : ""
+    }`}
+  >
     {isEmpty ? (
       <p>
-        There are no {String(name)}{"s "}
+        There are no {String(name)}
+        {"s "}
         {isQuery ? "with this search params" : "yet"}
       </p>
     ) : (

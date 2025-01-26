@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import type { EntityProps, Errors } from "@/lib/types";
 import type { Entity } from "@/models";
 import type { FormProps } from "../Form";
@@ -17,11 +16,7 @@ interface EntityEditorProps<EntityType extends Entity>
   onMount: (input: HTMLInputElement) => void;
 }
 
-type EntityEditorElement = <EntityType extends Entity>(
-  props: Readonly<EntityEditorProps<EntityType>>
-) => JSX.Element;
-
-const EntityEditor: EntityEditorElement = ({
+const EntityEditor = <EntityType extends Entity>({
   entityName,
   entity,
   errors,
@@ -31,7 +26,7 @@ const EntityEditor: EntityEditorElement = ({
   onReset,
   onMount,
   children,
-}) =>
+}: Readonly<EntityEditorProps<EntityType>>) =>
   isEdit ? (
     <Form onSubmit={onSubmit} onReset={onReset}>
       <EntityFormFields<typeof entity>
@@ -47,12 +42,9 @@ const EntityEditor: EntityEditorElement = ({
     </Form>
   ) : (
     <div className={`styled-wrapper ${s.entity}`}>
-      <div className={s.entity__main}>
-
-      {children}
-      </div>
+      <div className={s.entity__main}>{children}</div>
       <div className={s.entity__controls}>
-      <Button onClick={onEditStart}>Edit</Button>
+        <Button onClick={onEditStart}>Edit</Button>
       </div>
     </div>
   );

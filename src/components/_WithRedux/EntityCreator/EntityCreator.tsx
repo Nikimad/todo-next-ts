@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { EntityProps, Errors } from "@/lib/types";
 import { Entity } from "@/models";
 import type { FormProps } from "../Form";
@@ -13,16 +12,12 @@ interface EntityCreatorProps<EntityType extends Entity>
   errors: Errors;
 }
 
-type EntityCreatorElement = <EntityType extends Entity>(
-  props: EntityCreatorProps<EntityType>
-) => JSX.Element;
-
-const EntityCreator: EntityCreatorElement = ({
+const EntityCreator = <EntityType extends Entity>({
   entity,
   entityName,
   errors,
   onSubmit,
-}) => (
+}: Readonly<EntityCreatorProps<EntityType>>) => (
   <Form onSubmit={onSubmit}>
     <EntityFormFields<typeof entity>
       entity={entity}
