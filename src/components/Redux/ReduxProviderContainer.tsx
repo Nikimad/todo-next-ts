@@ -1,17 +1,17 @@
-import type { UnnormolizeBoardEntity } from "@/models/features/boards";
-import { getBoards } from "@/models/features/boards/api";
 import ReduxProvider from "./ReduxProvider";
+import getPreparedState from "@/lib/helpers/getPreparedState";
 
 const ReduxProviderContainer = async ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [errors, data] = await getBoards();
-  const boards = (data?.tests || []) as UnnormolizeBoardEntity[];
+  const initialState = await getPreparedState();
+
+  if (initialState.errors) return null;
 
   return (
-    <ReduxProvider errors={errors} unnormolizeState={{ boards }}>
+    <ReduxProvider initialState={initialState}>
       {children}
     </ReduxProvider>
   );
