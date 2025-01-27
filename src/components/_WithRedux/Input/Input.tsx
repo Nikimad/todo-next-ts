@@ -1,7 +1,6 @@
 import s from "./Input.module.css";
 
-export interface InputProps
-  extends Readonly<React.InputHTMLAttributes<HTMLInputElement>> {
+export interface InputProps extends Readonly<React.ComponentProps<"input">> {
   onMount?: (input: HTMLInputElement) => void;
 }
 
