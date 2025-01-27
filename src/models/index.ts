@@ -3,7 +3,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import boards, { UnnormolizeBoardEntity, type BoardEntity } from "./features/boards";
 import tasks, { type TaskEntity } from "./features/tasks";
 import todos, { type TodoEntity } from "./features/todos";
-import session from "./features/session";
+import authorization from "./features/authorization";
+import status from "./features/status";
 import rootSaga from "./sagas";
 
 export const makeStore = () => {
@@ -11,7 +12,8 @@ export const makeStore = () => {
 
   const store = configureStore({
     reducer: {
-      session,
+      authorization,
+      status,
       boards,
       tasks,
       todos,
