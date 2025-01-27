@@ -1,0 +1,11 @@
+.field {
+    position: relative;
+    display: grid;
+    gap: var(--gap);
+    padding-bottom: 30px;
+}
+
+.field__error {
+    position: absolute;
+    bottom: 4px;
+}
