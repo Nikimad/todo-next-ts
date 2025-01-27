@@ -6,7 +6,6 @@ import Boards from "./Boards";
 
 const BoardsContainer = () => {
     const boards = useAppSelector(boardsSelectors.selectAll);
-    console.log(boards);
     return <Boards boards={boards} />;
 };
 
