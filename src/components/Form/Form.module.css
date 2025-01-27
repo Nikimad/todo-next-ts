@@ -1,8 +1,0 @@
-.form {
-    position: relative;
-    display: grid;
-    gap: 24px;
-    background-color: var(--bg-item);
-    border-radius: var(--br);
-    padding: 32px;
-}
