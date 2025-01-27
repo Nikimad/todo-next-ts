@@ -1,15 +1,6 @@
 import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { UnnormolizeTaskEntity } from "../tasks";
-import { UnnormolizeState } from "@/models";
 
-export type UnnormolizeBoardEntity = {
-  id: string | number;
-  title: string;
-  questions: UnnormolizeTaskEntity[],
-  created_at: string;
-};
 
 export type BoardEntity = {
   id: string | number;
@@ -44,15 +35,9 @@ export const boardsSlice = createSlice({
     updateBoard: delegateActionToSaga,
     removeBoard: delegateActionToSaga,
     addBoardSuccess: boardsAdapter.addOne,
+    setBoards: boardsAdapter.setAll,
     updateBoardSuccess: boardsAdapter.updateOne,
     removeBoardSuccess: boardsAdapter.removeOne,
-    setBoards: (state, { payload: { boards } }: PayloadAction<UnnormolizeState>) => {
-      const normolizedBoards: BoardEntity[] = boards.map(
-        ({ title, id, created_at }) => ({ title, id, created_at })
-      );
-      
-      boardsAdapter.setAll(state, normolizedBoards);
-    },
   },
 });
 
