@@ -1,5 +1,6 @@
-import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
 
 
 export type BoardEntity = {
@@ -22,18 +23,16 @@ export const boardsAdapter = createEntityAdapter<BoardEntity>({
   }
 });
 
-const delegateActionToSaga: CaseReducer<
-  ReturnType<typeof boardsAdapter.getInitialState>,
-  BoardPayloadAction
-> = (state) => state;
+const delegateCreator = getDelegateCreator<ReturnType<typeof boardsAdapter.getInitialState>>();
+const delegateActionWithPayloadToSaga = delegateCreator<BoardEntity>();
 
 export const boardsSlice = createSlice({
   name: "boards",
   initialState: boardsAdapter.getInitialState(),
   reducers: {
-    addBoard: delegateActionToSaga,
-    updateBoard: delegateActionToSaga,
-    removeBoard: delegateActionToSaga,
+    addBoard: delegateActionWithPayloadToSaga,
+    updateBoard: delegateActionWithPayloadToSaga,
+    removeBoard: delegateActionWithPayloadToSaga,
     addBoardSuccess: boardsAdapter.addOne,
     setBoards: boardsAdapter.setAll,
     updateBoardSuccess: boardsAdapter.updateOne,

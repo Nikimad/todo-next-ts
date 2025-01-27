@@ -16,7 +16,7 @@ function* logoutSaga() {
 }
 
 export function* authorizationWatcherSaga() {
-  yield takeEvery(authorizationActions.signin.match, signSaga);
-  yield takeEvery(authorizationActions.signup.match, signSaga);
+  yield takeEvery(authorizationActions.signin, signSaga);
+  yield takeEvery(authorizationActions.signup, signSaga);
   yield takeEvery(authorizationActions.logout, logoutSaga);
 }

@@ -1,6 +1,8 @@
-import { Errors, Payload } from "@/lib/types";
-import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import { Errors } from "@/lib/types";
+import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+
+import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
 
 export type AuthorizationData = {
   username: string;
@@ -34,18 +36,14 @@ const initialState: AuthorizationState = {
   errors: null,
 };
 
-const delegateActionWithPayloadToSaga: CaseReducer<
-  AuthorizationState,
-  AuthorizationDataPayloadAction
-> = (state) => {
-  state.isLoading = true;
-  state.errors = null;
-};
-
-const delegateActionWithoutPayloadToSaga: CaseReducer<
-  AuthorizationState,
-  PayloadAction
-> = (state) => state;
+const delegateCreator = getDelegateCreator<AuthorizationState>();
+const delegateActionWithPayloadToSaga = delegateCreator<AuthorizationData>(
+  (state) => {
+    state.isLoading = true;
+    state.errors = null;
+  }
+);
+const delegateActionWithoutPayloadToSaga = delegateCreator<void>();
 
 export const authorizationSlice = createSlice({
   name: "authorization",
