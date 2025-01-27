@@ -1,1 +1,1 @@
-export { default } from "@/components/_WithRedux/Authorization";
+export { default } from "@/components/Authorization";

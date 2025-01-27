@@ -1,5 +1,5 @@
-import TodoCreator from "@/components/_WithRedux/TodoCreator";
-import Todos from "@/components/_WithRedux/Todos";
+import TodoCreator from "@/components/TodoCreator";
+import Todos from "@/components/Todos";
 
 const TodosPage = async ({
   params,

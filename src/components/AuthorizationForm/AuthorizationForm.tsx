@@ -2,7 +2,7 @@ import { Errors } from "@/lib/types";
 
 import Form from "../Form";
 import AuthorizationField from "../AuthorizationField";
-import ErrorMessage from "@/components/ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import Button from "../Button";
 import Spinner from "@/components/Spinner";
 import s from "./Authorization.module.css";

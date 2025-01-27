@@ -12,6 +12,7 @@ const BoardCreatorContainer = () => (
     entity={{
       id: crypto.randomUUID(),
       title: "",
+      created_at: "uncreated",
     }}
     action={boardsActions.addBoard}
     getEntity={getBoard}

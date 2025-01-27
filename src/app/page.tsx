@@ -1,5 +1,5 @@
-import BoardCreator from "@/components/_WithRedux/BoardCreator";
-import Boards from "@/components/_WithRedux/Boards";
+import BoardCreator from "@/components/BoardCreator";
+import Boards from "@/components/Boards";
 
 const BoardsPage = () => (
   <>

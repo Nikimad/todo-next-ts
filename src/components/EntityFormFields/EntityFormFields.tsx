@@ -2,7 +2,7 @@ import type { Entity } from "@/models";
 import type { EntityProps, Errors } from "@/lib/types";
 
 import Input from "../Input";
-import ErrorMessage from "@/components/ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import Choice from "../Choice";
 import s from "./EntityFormFields.module.css";
 

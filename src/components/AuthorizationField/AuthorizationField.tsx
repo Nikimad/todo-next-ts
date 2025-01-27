@@ -1,6 +1,6 @@
 import { Errors } from "@/lib/types";
 import Input from "../Input";
-import ErrorMessage from "@/components/ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import s from "./AuthorizationField.module.css";
 
 interface AuthorizationFieldProps extends React.ComponentProps<typeof Input> {

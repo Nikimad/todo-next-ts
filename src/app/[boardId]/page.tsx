@@ -1,5 +1,5 @@
-import TaskCreator from "@/components/_WithRedux/TaskCreator";
-import Tasks from "@/components/_WithRedux/Tasks";
+import TaskCreator from "@/components/TaskCreator";
+import Tasks from "@/components/Tasks";
 
 const TasksPage = async ({
   params,
