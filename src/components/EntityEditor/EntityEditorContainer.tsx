@@ -10,7 +10,7 @@ import EntityEditor from "./EntityEditor";
 import useEntity from "@/hooks/useEntity";
 
 interface EntityEditorContainerProps<EntityType extends Entity>
-  extends EntityFormContainerProps<EntityType>,
+  extends Required<EntityFormContainerProps<EntityType>>,
     EntityProps<EntityType> {
   children: React.ReactNode;
 }
@@ -22,11 +22,15 @@ type EntityEditorContainerElement = <EntityType extends Entity>(
 const EntityEditorContainer: EntityEditorContainerElement = ({
   entityName,
   entity,
-  action,
+  sendAction,
+  deleteAction,
   getEntity,
   children,
 }) => {
-  const { errors, isValid, sendEntity, resetErrors } = useEntity(action);
+  const { errors, isValid, sendEntity, deleteEntity, resetErrors } = useEntity(
+    sendAction,
+    deleteAction
+  );
 
   const [isEdit, setIsEdit] = useState(false);
 
@@ -53,7 +57,15 @@ const EntityEditorContainer: EntityEditorContainerElement = ({
     [getEntity, isValid, sendEntity, handleEditEnd]
   );
 
-  const handleMountInput = useCallback((input: HTMLInputElement) => input?.focus(), []);
+  const handleDelete = useCallback(
+    () => deleteEntity && deleteEntity(entity),
+    [entity, deleteEntity]
+  );
+
+  const handleMountInput = useCallback(
+    (input: HTMLInputElement) => input?.focus(),
+    []
+  );
 
   return (
     <EntityEditor<typeof entity>
@@ -64,6 +76,7 @@ const EntityEditorContainer: EntityEditorContainerElement = ({
       onReset={handleEditEnd}
       onSubmit={handleSubmit}
       onEditStart={handleEditStart}
+      onDelete={handleDelete}
       onMount={handleMountInput}
     >
       {children}

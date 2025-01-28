@@ -13,6 +13,7 @@ interface EntityEditorProps<EntityType extends Entity>
   errors: Errors;
   isEdit: boolean;
   onEditStart: () => void;
+  onDelete: () => void;
   onMount: (input: HTMLInputElement) => void;
 }
 
@@ -24,6 +25,7 @@ const EntityEditor = <EntityType extends Entity>({
   onEditStart,
   onSubmit,
   onReset,
+  onDelete,
   onMount,
   children,
 }: Readonly<EntityEditorProps<EntityType>>) =>
@@ -45,6 +47,7 @@ const EntityEditor = <EntityType extends Entity>({
       <div className={s.entity__main}>{children}</div>
       <div className={s.entity__controls}>
         <Button onClick={onEditStart}>Edit</Button>
+        <Button onClick={onDelete}>Delete</Button>
       </div>
     </div>
   );
