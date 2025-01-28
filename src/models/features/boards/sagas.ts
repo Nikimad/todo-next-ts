@@ -4,6 +4,7 @@ import type { BoardEntityResponse, BoardStatusResponse } from "./api";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { boardsActions } from ".";
 import { createBoard, editBoard, deleteBoard } from "./api";
+import { tasksActions } from "../tasks";
 
 function* addBoardSaga({ payload }: BoardPayloadAction) {
   const [errors, newBoard]: BoardEntityResponse = yield call(createBoard, payload);
