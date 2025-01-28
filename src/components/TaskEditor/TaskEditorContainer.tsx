@@ -11,7 +11,8 @@ const TaskEditorContainer = ({ task }: { task: TaskEntity }) => (
   <EntityEditor<TaskEntity>
     entityName="task"
     entity={task}
-    action={tasksActions.updateTask}
+    sendAction={tasksActions.updateTask}
+    deleteAction={tasksActions.removeTask}
     getEntity={getTask(String(task.boardId))}
   >
     <TaskEditor task={task} />
