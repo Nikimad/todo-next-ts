@@ -11,7 +11,8 @@ const BoardEditorContainer = ({ board }: { board: BoardEntity }) => (
   <EntityEditor<BoardEntity>
     entityName="board"
     entity={board}
-    action={boardsActions.updateBoard}
+    sendAction={boardsActions.updateBoard}
+    deleteAction={boardsActions.removeBoard}
     getEntity={getBoard}
   >
     <BoardEditor board={board} />
