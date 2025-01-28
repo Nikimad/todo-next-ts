@@ -2,11 +2,11 @@ import { BoardEntity } from "@/models/features/boards";
 import { TaskEntity } from "@/models/features/tasks";
 import { TodoEntity } from "@/models/features/todos";
 
-type UnnormalTodoEntity = Omit<TodoEntity, "taskId">;
-interface UnnormalTaskEntity extends Omit<TaskEntity, "boardId"> {
+export type UnnormalTodoEntity = Omit<TodoEntity, "boardId" | "taskId">;
+export interface UnnormalTaskEntity extends Omit<TaskEntity, "boardId"> {
   answers: UnnormalTodoEntity[];
 }
-interface UnnormalBoardEntity extends BoardEntity {
+export interface UnnormalBoardEntity extends BoardEntity {
   questions: UnnormalTaskEntity[];
 }
 export type UnnormalData = {
@@ -26,8 +26,9 @@ const normalizeData = (data: UnnormalData) => {
         (innerAcc: NormalizedDataSlice, { answers: todos, ...task }) => {
           const normolizedTask = { ...task, boardId: board.id };
           const normolizedTodos = todos.map((todo) => ({
-            ...todo,
+            boardId: board.id,
             taskId: task.id,
+            ...todo,
           }));
 
           innerAcc.tasks = [...innerAcc.tasks, normolizedTask];
