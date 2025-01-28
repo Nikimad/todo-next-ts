@@ -18,7 +18,7 @@ const TaskCreatorContainer = ({
       title: "",
       question_type: "multiple",
     }}
-    action={tasksActions.addTask}
+    sendAction={tasksActions.addTask}
     getEntity={getTask(boardId)}
   />
 );
