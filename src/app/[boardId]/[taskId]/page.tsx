@@ -4,13 +4,13 @@ import Todos from "@/components/Todos";
 const TodosPage = async ({
   params,
 }: {
-  params: Promise<{ taskId: string }>;
+  params: Promise<{ boardId: string, taskId: string }>;
 }) => {
-  const { taskId } = await params;
+  const { boardId, taskId } = await params;
   return (
     <>
       <h2>Todos</h2>
-      <TodoCreator params={{ taskId }} />
+      <TodoCreator params={{ boardId, taskId }} />
       <Todos params={{ taskId }} />
     </>
   );
