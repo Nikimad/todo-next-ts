@@ -21,7 +21,8 @@ const TodoEditorContainer = ({ todo }: { todo: TodoEntity }) => {
     <EntityEditor<TodoEntity>
       entityName="todo"
       entity={todo}
-      action={todosActions.updateTodo}
+      sendAction={todosActions.updateTodo}
+      deleteAction={todosActions.removeTodo}
       getEntity={getTodo(String(todo.taskId))}
     >
       <TodoEditor todo={todo} onComplete={handleComplete} />
