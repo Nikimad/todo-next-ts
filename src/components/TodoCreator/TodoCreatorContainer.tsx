@@ -6,19 +6,20 @@ import EntityCreator from "../EntityCreator";
 import getTodo from "@/lib/helpers/getTodo";
 
 const TodoCreatorContainer = ({
-  params: { taskId },
+  params: { boardId, taskId },
 }: {
-  params: { taskId: string };
+  params: { boardId: string, taskId: string };
 }) => (
   <EntityCreator<TodoEntity>
     entityName="todo"
     entity={{
-      id: crypto.randomUUID(),
+      boardId,
       taskId,
+      id: crypto.randomUUID(),
       text: "",
       is_right: false,
     }}
-    action={todosActions.addTodo}
+    sendAction={todosActions.addTodo}
     getEntity={getTodo(taskId)}
   />
 );
