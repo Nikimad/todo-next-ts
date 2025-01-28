@@ -7,11 +7,19 @@ import { useAction } from "@/models/hooks";
 import validateIsEmpty from "@/lib/helpers/validateIsEmpty";
 
 const useEntity = <Payload extends Entity>(
-  action: PayloadActionCreator<Payload>
-) => {
+  sendAction: PayloadActionCreator<Payload>,
+  deleteAction?: PayloadActionCreator<Payload>
+): {
+  errors: Errors;
+  isValid: (payload: Payload) => boolean;
+  sendEntity: (payload: Payload) => void;
+  resetErrors: () => void;
+  deleteEntity?: (payload: Payload) => void;
+} => {
   const [errors, setErrors] = useState<Errors>(null);
 
-  const sendEntity = useAction(action);
+  const sendEntity = useAction(sendAction);
+  const deleteEntity = useAction(deleteAction);
 
   const validateEntity = useCallback((entity: Payload) => {
     const args: [key: string, value: string] =
@@ -33,6 +41,7 @@ const useEntity = <Payload extends Entity>(
     isValid,
     sendEntity,
     resetErrors,
+    ...(deleteAction && { deleteEntity }),
   };
 };
 
