@@ -10,8 +10,9 @@ function* addTodoSaga({ payload }: TodoPayloadAction) {
   if (newTodo) {
     yield put(
       todosActions.addTodoSuccess({
-        ...newTodo,
+        boardId: payload.boardId,
         taskId: payload.taskId,
+        ...newTodo,
       })
     );
   }

@@ -1,12 +1,14 @@
-import type { CaseReducer, PayloadAction } from "@reduxjs/toolkit";
-import type { TaskEntity } from "../tasks";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { BoardEntity, boardsActions } from "../boards";
+import { tasksActions, type TaskEntity } from "../tasks";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
 
 export type TodoEntity = {
-  id: string | number;
+  boardId: BoardEntity["id"];
   taskId: TaskEntity["id"];
+  id: string | number;
   text: string;
   is_right: boolean;
 };
@@ -16,10 +18,12 @@ export type TodoStatus = {
 }; //@duplicate: BoardStatus, TaskStatus
 
 export type TodoPayloadAction = PayloadAction<TodoEntity>;
+export type TasksIdsPayloadAction = PayloadAction<TaskEntity["id"][]>;
 
 export const todosAdapter = createEntityAdapter<TodoEntity>();
 
-const delegateCreator = getDelegateCreator<ReturnType<typeof todosAdapter.getInitialState>>();
+const delegateCreator =
+  getDelegateCreator<ReturnType<typeof todosAdapter.getInitialState>>();
 const delegateActionWithPayloadToSaga = delegateCreator<TodoEntity>();
 
 export const todosSlice = createSlice({
@@ -34,6 +38,20 @@ export const todosSlice = createSlice({
     updateTodoSuccess: todosAdapter.updateOne,
     removeTodoSuccess: todosAdapter.removeOne,
   },
+  extraReducers: (builder) =>
+    builder
+      .addCase(tasksActions.removeTaskSuccess, (state, { payload }) => {
+        const removedTodosIds = state.ids.filter(
+          (todoId) => state.entities[todoId].taskId == payload
+        );
+        todosAdapter.removeMany(state, removedTodosIds);
+      })
+      .addCase(boardsActions.removeBoardSuccess, (state, { payload }) => {
+        const removedTodosIds = state.ids.filter(
+          (taskId) => state.entities[taskId].boardId == payload
+        );
+        todosAdapter.removeMany(state, removedTodosIds);
+      }),
 });
 
 export const todosActions = todosSlice.actions;
