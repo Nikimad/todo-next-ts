@@ -6,12 +6,13 @@
 }
 
 .list__container {
-    height: 500px;
+    min-height: 165px;
 }
 
 .list__container_empty {
     display: grid;
     place-content: center;
     font-weight: bold;
-    color: var(--gray-blue-extradark);
+    background-color: var(--bg-item);
+    border-radius: var(--br);
 }
