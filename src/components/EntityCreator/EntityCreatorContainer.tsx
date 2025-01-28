@@ -20,10 +20,10 @@ type EntityCreatorContainerElement = <EntityType extends Entity>(
 const EntityCreatorContainer: EntityCreatorContainerElement = ({
   entity,
   entityName,
-  action,
+  sendAction,
   getEntity,
 }) => {
-  const { errors, isValid, sendEntity } = useEntity(action);
+  const { errors, isValid, sendEntity } = useEntity(sendAction);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
