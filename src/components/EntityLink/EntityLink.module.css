@@ -1,20 +1,9 @@
 .link {
     display: block;
     width: 100%;
-    color: inherit;
     text-decoration: none;
     border-radius: var(--br);
     transition: var(--trans);
-    background-color: var(--gray-blue-extralight);
     padding: 12px;
 }
 
-a.link {
-    cursor: pointer;
-}
-
-@media (hover: hover) {
-    a.link:hover {
-        background-color: var(--gray-blue-light);
-    }
-}

@@ -5,7 +5,7 @@ type EntityLinkProps = Readonly<React.AnchorHTMLAttributes<HTMLAnchorElement>>;
 
 const EntityLink = ({ href, children }: EntityLinkProps) =>
   href ? (
-    <Link href={String(href)} className={s.link}>
+    <Link href={String(href)} className={`link ${s.link}`}>
       {children}
     </Link>
   ) : (
