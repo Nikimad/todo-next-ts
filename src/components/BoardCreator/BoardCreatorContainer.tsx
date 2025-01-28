@@ -14,7 +14,7 @@ const BoardCreatorContainer = () => (
       title: "",
       created_at: "uncreated",
     }}
-    action={boardsActions.addBoard}
+    sendAction={boardsActions.addBoard}
     getEntity={getBoard}
   />
 );
