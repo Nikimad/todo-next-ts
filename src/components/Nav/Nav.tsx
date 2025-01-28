@@ -1,7 +1,8 @@
 import Link from "next/link";
+import s from "./Nav.module.css";
 
 const Nav = ({ pathname }: { pathname: string }) => (
-  <nav>
+  <nav className={s.nav}>
     {pathname !== "/signin" && (
       <Link className="link" href="/signin">
         Sign in
