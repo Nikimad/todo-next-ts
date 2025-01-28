@@ -1,0 +1,10 @@
+.nav,
+.nav__path {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.nav {
+    justify-content: space-between;
+}
