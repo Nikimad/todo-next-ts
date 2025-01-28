@@ -1,6 +1,6 @@
 import createSagaMiddleware from "redux-saga";
 import { configureStore } from "@reduxjs/toolkit";
-import boards, { UnnormolizeBoardEntity, type BoardEntity } from "./features/boards";
+import boards, { type BoardEntity } from "./features/boards";
 import tasks, { type TaskEntity } from "./features/tasks";
 import todos, { type TodoEntity } from "./features/todos";
 import authorization from "./features/authorization";
@@ -30,10 +30,6 @@ export const makeStore = () => {
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
-
-export type UnnormolizeState = {
-  boards: UnnormolizeBoardEntity[];
-}
 
 export type Entity = BoardEntity | TaskEntity | TodoEntity;
 
