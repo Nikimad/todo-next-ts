@@ -1,5 +1,5 @@
-import type {  PayloadAction } from "@reduxjs/toolkit";
-import type { BoardEntity } from "../boards";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { boardsActions, type BoardEntity } from "../boards";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
@@ -19,7 +19,8 @@ export type TaskPayloadAction = PayloadAction<TaskEntity>;
 
 export const tasksAdapter = createEntityAdapter<TaskEntity>();
 
-const delegateCreator = getDelegateCreator<ReturnType<typeof tasksAdapter.getInitialState>>();
+const delegateCreator =
+  getDelegateCreator<ReturnType<typeof tasksAdapter.getInitialState>>();
 const delegateActionWithPayloadToSaga = delegateCreator<TaskEntity>();
 
 export const tasksSlice = createSlice({
@@ -34,6 +35,13 @@ export const tasksSlice = createSlice({
     updateTaskSuccess: tasksAdapter.updateOne,
     removeTaskSuccess: tasksAdapter.removeOne,
   },
+  extraReducers: (builder) =>
+    builder.addCase(boardsActions.removeBoardSuccess, (state, { payload }) => {
+      const removedTasksIds = state.ids.filter(
+        (taskId) => state.entities[taskId].boardId == payload
+      );
+      tasksAdapter.removeMany(state, removedTasksIds);
+    }),
 });
 
 export const tasksActions = tasksSlice.actions;

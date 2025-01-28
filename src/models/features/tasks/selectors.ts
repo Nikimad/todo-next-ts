@@ -1,7 +1,7 @@
 import type { RootState } from "@/models";
 
 import { createSelector } from "@reduxjs/toolkit";
-import { tasksAdapter } from ".";
+import {  tasksAdapter } from ".";
 
 const selectTasksRoot = createSelector(
   (state: RootState) => state,

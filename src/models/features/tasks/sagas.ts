@@ -9,8 +9,8 @@ function* addTaskSaga({ payload }: TaskPayloadAction) {
   const [errors, newTodo]: TaskEntityResponse = yield call(createTask, payload);
   if (newTodo) {
     yield put(tasksActions.addTaskSuccess({
-      ...newTodo,
       boardId: payload.boardId,
+      ...newTodo,
     }));
   }
 }
