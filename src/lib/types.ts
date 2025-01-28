@@ -22,8 +22,9 @@ export type Concrete<Type> = {
 };
 
 export interface EntityFormContainerProps<EntityType extends Entity> {
-  action: PayloadActionCreator<EntityType>;
+  sendAction: PayloadActionCreator<EntityType>;
   getEntity: (values: { [key: string]: string }) => EntityType;
+  deleteAction?: PayloadActionCreator<EntityType>;
 }
 
 export interface EntityProps<EntityType extends Entity> {
