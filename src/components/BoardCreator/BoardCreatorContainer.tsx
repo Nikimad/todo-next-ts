@@ -3,20 +3,22 @@
 import type { BoardEntity } from "@/models/features/boards";
 
 import { boardsActions } from "@/models/features/boards";
-import getBoard from "@/lib/helpers/getBoard";
+import getBoard from "@/lib/normolizer/getBoard";
 import EntityCreator from "../EntityCreator";
 
-const BoardCreatorContainer = () => (
-  <EntityCreator<BoardEntity>
+const BoardCreatorContainer = () => {
+  const boardDraft: BoardEntity = {
+    id: crypto.randomUUID(),
+    title: "",
+    created_at: Date.now().toLocaleString(),
+  };
+
+  return <EntityCreator<BoardEntity>
     entityName="board"
-    entity={{
-      id: crypto.randomUUID(),
-      title: "",
-      created_at: "uncreated",
-    }}
+    entity={boardDraft}
     sendAction={boardsActions.addBoard}
-    getEntity={getBoard("uncreated")}
+    getEntity={getBoard({})}
   />
-);
+};
 
 export default BoardCreatorContainer;

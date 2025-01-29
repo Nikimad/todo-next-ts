@@ -1,6 +1,6 @@
 import type { FetchResponse } from "@/models/helpers";
 import type { BoardEntity, BoardStatus } from ".";
-import { UnnormalBoardEntity, UnnormalData } from "@/lib/helpers/normalizeData";
+import { UnnormalBoardEntity, UnnormalData } from "@/lib/normolizer/types";
 
 import { _get, _post, _patch, _delete } from "@/lib/helpers/_fetch";
 

@@ -4,7 +4,7 @@ import type { BoardEntity } from "@/models/features/boards";
 
 import { boardsActions } from "@/models/features/boards";
 import EntityEditor from "../EntityEditor";
-import getBoard from "@/lib/helpers/getBoard";
+import getBoard from "@/lib/normolizer/getBoard";
 import BoardEditor from "./BoardEditor";
 
 const BoardEditorContainer = ({ board }: { board: BoardEntity }) => (
@@ -13,7 +13,7 @@ const BoardEditorContainer = ({ board }: { board: BoardEntity }) => (
     entity={board}
     sendAction={boardsActions.updateBoard}
     deleteAction={boardsActions.removeBoard}
-    getEntity={getBoard(board.created_at)}
+    getEntity={getBoard({})}
   >
     <BoardEditor board={board} />
   </EntityEditor>

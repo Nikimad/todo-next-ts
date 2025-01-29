@@ -4,16 +4,19 @@ import type { TodoEntityResponse, TodoStatusResponse } from "./api";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { todosActions } from ".";
 import { createTodo, editTodo, deleteTodo } from "./api";
-import getTodo from "@/lib/helpers/getTodo";
+import normalizeTodo from "@/lib/normolizer/normalizeTodo";
 
 function* addTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, newTodo]: TodoEntityResponse = yield call(createTodo, payload);
   if (newTodo) {
-    const handleUnnormalTodo = getTodo(
-      String(payload.boardId),
-      String(payload.taskId)
+    yield put(
+      todosActions.addTodoSuccess(
+        normalizeTodo(newTodo, {
+          boardId: payload.boardId,
+          taskId: payload.taskId,
+        })
+      )
     );
-    yield put(todosActions.addTodoSuccess(handleUnnormalTodo(newTodo)));
   }
   if (errors) {
     /*status reject*/
@@ -26,14 +29,13 @@ function* updateTodoSaga({ payload }: TodoPayloadAction) {
     payload
   );
   if (editedTodo) {
-    const handleUnnormalTodo = getTodo(
-      String(payload.boardId),
-      String(payload.taskId)
-    );
     yield put(
       todosActions.updateTodoSuccess({
         id: payload.id,
-        changes: handleUnnormalTodo(editedTodo),
+        changes: normalizeTodo(editedTodo, {
+          boardId: payload.boardId,
+          taskId: payload.taskId,
+        }),
       })
     );
   }

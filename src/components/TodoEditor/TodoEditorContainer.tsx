@@ -2,11 +2,11 @@
 
 import type { TodoEntity } from "@/models/features/todos";
 
-import { todosActions } from "@/models/features/todos";
-import EntityEditor from "../EntityEditor";
-import getTodo from "@/lib/helpers/getTodo";
 import { useAction } from "@/models/hooks";
 import { useCallback } from "react";
+import { todosActions } from "@/models/features/todos";
+import getTodo from "@/lib/normolizer/getTodo";
+import EntityEditor from "../EntityEditor";
 import TodoEditor from "./TodoEditor";
 
 const TodoEditorContainer = ({ todo }: { todo: TodoEntity }) => {
@@ -23,7 +23,7 @@ const TodoEditorContainer = ({ todo }: { todo: TodoEntity }) => {
       entity={todo}
       sendAction={todosActions.updateTodo}
       deleteAction={todosActions.removeTodo}
-      getEntity={getTodo(String(todo.boardId), String(todo.taskId))}
+      getEntity={getTodo({ boardId: todo.boardId, taskId: todo.taskId })}
     >
       <TodoEditor todo={todo} onComplete={handleComplete} />
     </EntityEditor>

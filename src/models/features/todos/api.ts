@@ -3,7 +3,7 @@ import type { TodoEntity, TodoStatus } from ".";
 
 import { _post, _patch, _delete } from "@/lib/helpers/_fetch";
 import { tasksEndpoint } from "../tasks/api";
-import { UnnormalTodoEntity } from "@/lib/helpers/normalizeData";
+import { UnnormalTodoEntity } from "@/lib/normolizer/types";
 
 export type TodoEntityResponse = FetchResponse<UnnormalTodoEntity>;
 export type  TodoStatusResponse = FetchResponse<TodoStatus>;

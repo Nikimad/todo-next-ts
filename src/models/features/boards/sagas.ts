@@ -8,12 +8,10 @@ import type {
 import { call, put, takeEvery } from "redux-saga/effects";
 import { boardsActions } from ".";
 import { createBoard, editBoard, deleteBoard, getBoards } from "./api";
-import normalizeData from "@/lib/helpers/normalizeData";
+import normalizeData from "@/lib/normolizer/normalizeData";
+import normalizeBoard from "@/lib/normolizer/normalizeBoard";
 import { tasksActions } from "../tasks";
 import { todosActions } from "../todos";
-import getBoard from "@/lib/helpers/getBoard";
-
-const handleUnnormalBoard = getBoard();
 
 function* getBoardsSaga() {
   const [errors, data]: UnnormalDataResponse = yield call(getBoards);
@@ -34,7 +32,7 @@ function* addBoardSaga({ payload }: BoardPayloadAction) {
     payload
   );
   if (newBoard) {
-    yield put(boardsActions.addBoardSuccess(handleUnnormalBoard(newBoard)));
+    yield put(boardsActions.addBoardSuccess(normalizeBoard(newBoard, {})));
   }
   if (errors) {
     /*status reject*/
@@ -50,7 +48,7 @@ function* updateBoardSaga({ payload }: BoardPayloadAction) {
     yield put(
       boardsActions.updateBoardSuccess({
         id: payload.id,
-        changes: handleUnnormalBoard(editedBoard),
+        changes: normalizeBoard(editedBoard, {}),
       })
     );
   }

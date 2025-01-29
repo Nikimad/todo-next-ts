@@ -3,9 +3,10 @@ import { BoardEntity } from "@/models/features/boards";
 import { TaskEntity } from "@/models/features/tasks";
 import { TodoEntity } from "@/models/features/todos";
 import { Errors } from "../types";
+import { UnnormalData } from "../normolizer/types"; 
 import { getUser } from "@/models/features/authorization/api";
 import { getBoards } from "@/models/features/boards/api";
-import normalizeData, { UnnormalData } from "./normalizeData";
+import normalizeData from "../normolizer/normalizeData"
 
 export type PreparedState = {
   user?: User;

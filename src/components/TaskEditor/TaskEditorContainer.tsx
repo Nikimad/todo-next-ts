@@ -4,7 +4,7 @@ import type { TaskEntity } from "@/models/features/tasks";
 
 import { tasksActions } from "@/models/features/tasks";
 import EntityEditor from "../EntityEditor";
-import getTask from "@/lib/helpers/getTask";
+import getTask from "@/lib/normolizer/getTask";
 import TaskEditor from "./TaskEditor";
 
 const TaskEditorContainer = ({ task }: { task: TaskEntity }) => (
@@ -13,7 +13,7 @@ const TaskEditorContainer = ({ task }: { task: TaskEntity }) => (
     entity={task}
     sendAction={tasksActions.updateTask}
     deleteAction={tasksActions.removeTask}
-    getEntity={getTask(String(task.boardId))}
+    getEntity={getTask({ boardId: task.boardId })}
   >
     <TaskEditor task={task} />
   </EntityEditor>

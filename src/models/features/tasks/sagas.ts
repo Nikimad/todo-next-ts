@@ -4,13 +4,16 @@ import type { TaskEntityResponse, TaskStatusResponse } from "./api";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { tasksActions } from ".";
 import { createTask, editTask, deleteTask } from "./api";
-import getTask from "@/lib/helpers/getTask";
+import normalizeTask from "@/lib/normolizer/normalizeTask";
 
 function* addTaskSaga({ payload }: TaskPayloadAction) {
   const [errors, newTask]: TaskEntityResponse = yield call(createTask, payload);
   if (newTask) {
-    const handleUnnormalTask = getTask(String(payload.boardId));
-    yield put(tasksActions.addTaskSuccess(handleUnnormalTask(newTask)));
+    yield put(
+      tasksActions.addTaskSuccess(
+        normalizeTask(newTask, { boardId: payload.boardId })
+      )
+    );
   }
   if (errors) {
     /*status reject*/
@@ -23,9 +26,11 @@ function* updateTaskSaga({ payload }: TaskPayloadAction) {
     payload
   );
   if (editedTask) {
-    const handleUnnormalTask = getTask(String(payload.boardId));
     yield put(
-      tasksActions.updateTaskSuccess({ id: payload.id, changes: handleUnnormalTask(editedTask) })
+      tasksActions.updateTaskSuccess({
+        id: payload.id,
+        changes: normalizeTask(editedTask, { boardId: payload.boardId }),
+      })
     );
   }
   if (errors) {
