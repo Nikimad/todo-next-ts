@@ -28,28 +28,31 @@ const EntityEditor = <EntityType extends Entity>({
   onDelete,
   onMount,
   children,
-}: Readonly<EntityEditorProps<EntityType>>) =>
-  isEdit ? (
-    <Form onSubmit={onSubmit} onReset={onReset}>
-      <EntityFormFields<typeof entity>
-        entity={entity}
-        errors={errors}
-        entityName={entityName}
-        fieldsName="editor"
-        onMount={onMount}
-      >
-        <Button type="submit">Done</Button>
-        <Button type="reset">Cancel</Button>
-      </EntityFormFields>
-    </Form>
-  ) : (
-    <div className={`styled-wrapper ${s.entity}`}>
-      <div className={s.entity__main}>{children}</div>
-      <div className={s.entity__controls}>
-        <Button onClick={onEditStart}>Edit</Button>
-        <Button onClick={onDelete}>Delete</Button>
+}: Readonly<EntityEditorProps<EntityType>>) => (
+  <li className={s.entity__container}>
+    {isEdit ? (
+      <Form onSubmit={onSubmit} onReset={onReset}>
+        <EntityFormFields<typeof entity>
+          entity={entity}
+          errors={errors}
+          entityName={entityName}
+          fieldsName="editor"
+          onMount={onMount}
+        >
+          <Button type="submit">Done</Button>
+          <Button type="reset">Cancel</Button>
+        </EntityFormFields>
+      </Form>
+    ) : (
+      <div className={`styled-wrapper ${s.entity}`}>
+        <div className={s.entity__main}>{children}</div>
+        <div className={s.entity__controls}>
+          <Button onClick={onEditStart}>Edit</Button>
+          <Button onClick={onDelete}>Delete</Button>
+        </div>
       </div>
-    </div>
-  );
+    )}
+  </li>
+);
 
 export default EntityEditor;

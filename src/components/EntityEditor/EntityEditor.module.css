@@ -3,6 +3,10 @@
     gap: var(--gap);
 }
 
+.entity__container::marker {
+    content: "";
+}
+
 .entity__main {
     font-size: 1.5em;
 }
