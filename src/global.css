@@ -31,6 +31,7 @@ button {
 }
 
 .link {
+  display: block;
   text-decoration: none;
   border-radius: var(--br);
   transition: var(--trans);
@@ -38,6 +39,10 @@ button {
   color: var(--bg-item);
   cursor: pointer;
   padding: var(--padding-secondary);
+}
+
+.link:focus-visible {
+  outline-offset: 3px;
 }
 
 .link_disabled {
