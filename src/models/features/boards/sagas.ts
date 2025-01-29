@@ -1,5 +1,9 @@
 import type { BoardPayloadAction } from ".";
-import type { BoardEntityResponse, BoardStatusResponse, UnnormalDataResponse } from "./api";
+import type {
+  BoardEntityResponse,
+  BoardStatusResponse,
+  UnnormalDataResponse,
+} from "./api";
 
 import { call, put, takeEvery } from "redux-saga/effects";
 import { boardsActions } from ".";
@@ -7,24 +11,34 @@ import { createBoard, editBoard, deleteBoard, getBoards } from "./api";
 import normalizeData from "@/lib/helpers/normalizeData";
 import { tasksActions } from "../tasks";
 import { todosActions } from "../todos";
+import getBoard from "@/lib/helpers/getBoard";
+
+const handleUnnormalBoard = getBoard();
 
 function* getBoardsSaga() {
   const [errors, data]: UnnormalDataResponse = yield call(getBoards);
-  if (data){
+  if (data) {
     const nomalizedData = normalizeData(data);
     yield put(boardsActions.setBoards(nomalizedData.boards));
     yield put(tasksActions.setTasks(nomalizedData.tasks));
     yield put(todosActions.setTodos(nomalizedData.todos));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* addBoardSaga({ payload }: BoardPayloadAction) {
-  const [errors, newBoard]: BoardEntityResponse = yield call(createBoard, payload);
+  const [errors, newBoard]: BoardEntityResponse = yield call(
+    createBoard,
+    payload
+  );
   if (newBoard) {
-    yield put(boardsActions.addBoardSuccess(newBoard));
+    yield put(boardsActions.addBoardSuccess(handleUnnormalBoard(newBoard)));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* updateBoardSaga({ payload }: BoardPayloadAction) {
@@ -34,10 +48,15 @@ function* updateBoardSaga({ payload }: BoardPayloadAction) {
   );
   if (editedBoard) {
     yield put(
-      boardsActions.updateBoardSuccess({ id: payload.id, changes: editedBoard })
+      boardsActions.updateBoardSuccess({
+        id: payload.id,
+        changes: handleUnnormalBoard(editedBoard),
+      })
     );
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* removeBoardSaga({ payload }: BoardPayloadAction) {
@@ -45,7 +64,9 @@ function* removeBoardSaga({ payload }: BoardPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(boardsActions.removeBoardSuccess(payload.id));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 export function* boardsWatcherSaga() {

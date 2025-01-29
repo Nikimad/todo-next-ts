@@ -32,6 +32,7 @@ export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
 
 export type Entity = BoardEntity | TaskEntity | TodoEntity;
+export type EntityValues = { [key: string]: string };
 
 type Entities = { board: BoardEntity; task: TaskEntity; todo: TodoEntity };
 

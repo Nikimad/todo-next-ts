@@ -4,29 +4,33 @@ import type { TaskEntityResponse, TaskStatusResponse } from "./api";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { tasksActions } from ".";
 import { createTask, editTask, deleteTask } from "./api";
+import getTask from "@/lib/helpers/getTask";
 
 function* addTaskSaga({ payload }: TaskPayloadAction) {
-  const [errors, newTodo]: TaskEntityResponse = yield call(createTask, payload);
-  if (newTodo) {
-    yield put(tasksActions.addTaskSuccess({
-      boardId: payload.boardId,
-      ...newTodo,
-    }));
+  const [errors, newTask]: TaskEntityResponse = yield call(createTask, payload);
+  if (newTask) {
+    const handleUnnormalTask = getTask(String(payload.boardId));
+    yield put(tasksActions.addTaskSuccess(handleUnnormalTask(newTask)));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* updateTaskSaga({ payload }: TaskPayloadAction) {
-  const [errors, editedTodo]: TaskEntityResponse = yield call(
+  const [errors, editedTask]: TaskEntityResponse = yield call(
     editTask,
     payload
   );
-  if (editedTodo) {
+  if (editedTask) {
+    const handleUnnormalTask = getTask(String(payload.boardId));
     yield put(
-      tasksActions.updateTaskSuccess({ id: payload.id, changes: editedTodo })
+      tasksActions.updateTaskSuccess({ id: payload.id, changes: handleUnnormalTask(editedTask) })
     );
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* removeTaskSaga({ payload }: TaskPayloadAction) {
@@ -34,7 +38,9 @@ function* removeTaskSaga({ payload }: TaskPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(tasksActions.removeTaskSuccess(payload.id));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 export function* tasksWatcherSaga() {

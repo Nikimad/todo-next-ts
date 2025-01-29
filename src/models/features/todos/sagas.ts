@@ -4,19 +4,20 @@ import type { TodoEntityResponse, TodoStatusResponse } from "./api";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { todosActions } from ".";
 import { createTodo, editTodo, deleteTodo } from "./api";
+import getTodo from "@/lib/helpers/getTodo";
 
 function* addTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, newTodo]: TodoEntityResponse = yield call(createTodo, payload);
   if (newTodo) {
-    yield put(
-      todosActions.addTodoSuccess({
-        boardId: payload.boardId,
-        taskId: payload.taskId,
-        ...newTodo,
-      })
+    const handleUnnormalTodo = getTodo(
+      String(payload.boardId),
+      String(payload.taskId)
     );
+    yield put(todosActions.addTodoSuccess(handleUnnormalTodo(newTodo)));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* updateTodoSaga({ payload }: TodoPayloadAction) {
@@ -25,11 +26,20 @@ function* updateTodoSaga({ payload }: TodoPayloadAction) {
     payload
   );
   if (editedTodo) {
+    const handleUnnormalTodo = getTodo(
+      String(payload.boardId),
+      String(payload.taskId)
+    );
     yield put(
-      todosActions.updateTodoSuccess({ id: payload.id, changes: editedTodo })
+      todosActions.updateTodoSuccess({
+        id: payload.id,
+        changes: handleUnnormalTodo(editedTodo),
+      })
     );
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 function* removeTodoSaga({ payload }: TodoPayloadAction) {
@@ -37,7 +47,9 @@ function* removeTodoSaga({ payload }: TodoPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(todosActions.removeTodoSuccess(payload.id));
   }
-  if (errors) {/*status reject*/}
+  if (errors) {
+    /*status reject*/
+  }
 }
 
 export function* todosWatcherSaga() {
