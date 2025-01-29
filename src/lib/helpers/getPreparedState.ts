@@ -6,7 +6,6 @@ import { Errors } from "../types";
 import { getUser } from "@/models/features/authorization/api";
 import { getBoards } from "@/models/features/boards/api";
 import normalizeData, { UnnormalData } from "./normalizeData";
-import { errors } from "../errors";
 
 export type PreparedState = {
   user?: User;
