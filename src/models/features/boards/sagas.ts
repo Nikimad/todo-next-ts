@@ -16,6 +16,7 @@ function* getBoardsSaga() {
     yield put(tasksActions.setTasks(nomalizedData.tasks));
     yield put(todosActions.setTodos(nomalizedData.todos));
   }
+  if (errors) {/*status reject*/}
 }
 
 function* addBoardSaga({ payload }: BoardPayloadAction) {
@@ -23,6 +24,7 @@ function* addBoardSaga({ payload }: BoardPayloadAction) {
   if (newBoard) {
     yield put(boardsActions.addBoardSuccess(newBoard));
   }
+  if (errors) {/*status reject*/}
 }
 
 function* updateBoardSaga({ payload }: BoardPayloadAction) {
@@ -35,6 +37,7 @@ function* updateBoardSaga({ payload }: BoardPayloadAction) {
       boardsActions.updateBoardSuccess({ id: payload.id, changes: editedBoard })
     );
   }
+  if (errors) {/*status reject*/}
 }
 
 function* removeBoardSaga({ payload }: BoardPayloadAction) {
@@ -42,6 +45,7 @@ function* removeBoardSaga({ payload }: BoardPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(boardsActions.removeBoardSuccess(payload.id));
   }
+  if (errors) {/*status reject*/}
 }
 
 export function* boardsWatcherSaga() {
