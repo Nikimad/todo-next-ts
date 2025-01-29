@@ -23,7 +23,7 @@ const TodoEditorContainer = ({ todo }: { todo: TodoEntity }) => {
       entity={todo}
       sendAction={todosActions.updateTodo}
       deleteAction={todosActions.removeTodo}
-      getEntity={getTodo(String(todo.taskId))}
+      getEntity={getTodo(String(todo.boardId), String(todo.taskId))}
     >
       <TodoEditor todo={todo} onComplete={handleComplete} />
     </EntityEditor>

@@ -20,7 +20,7 @@ const TodoCreatorContainer = ({
       is_right: false,
     }}
     sendAction={todosActions.addTodo}
-    getEntity={getTodo(taskId)}
+    getEntity={getTodo(boardId, taskId)}
   />
 );
 
