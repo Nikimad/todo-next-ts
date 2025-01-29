@@ -8,8 +8,13 @@ interface BoardsProps {
 }
 
 const Boards = ({ boards }: BoardsProps) => (
-  <EntitiesList<BoardEntity> name="board" isQuery={false} isEmpty={boards.length === 0}>
-    {boards.map((board) => <BoardEditor key={board.id} board={board} />)}
+  <EntitiesList<BoardEntity>
+    name="board"
+    isEmpty={boards.length === 0}
+  >
+    {boards.map((board) => (
+      <BoardEditor key={board.id} board={board} />
+    ))}
   </EntitiesList>
 );
 
