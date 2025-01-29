@@ -26,14 +26,16 @@ const EntityFormFields = <EntityType extends Entity>({
     <div className={s.fields}>
       <input type="hidden" name="id" defaultValue={entity.id} />
       {entityName === "todo" && (
-          <Choice
-            name="is_right"
-            id={`${String(entityName)}_${fieldsName}__complete`}
-            defaultChecked={"is_right" in entity && entity.is_right}
-          >Complete</Choice>
+        <Choice
+          name="is_right"
+          id={`${String(entityName)}_${fieldsName}__complete`}
+          defaultChecked={"is_right" in entity && entity.is_right}
+        >
+          Complete
+        </Choice>
       )}
       <Input
-        id={`${String(entityName)}_${fieldsName}__${
+        id={`${String(entityName)}__${entity.id}__${fieldsName}__${
           entityName === "todo" ? "text" : "title"
         }`}
         name={entityName === "todo" ? "text" : "title"}
@@ -43,7 +45,7 @@ const EntityFormFields = <EntityType extends Entity>({
     </div>
     <div className={s.fields__footer}>
       <label
-        htmlFor={`${String(entityName)}_${fieldsName}__${
+        htmlFor={`${String(entityName)}__${entity.id}__${fieldsName}__${
           entityName === "todo" ? "text" : "title"
         }`}
         className={s.fields__error}
