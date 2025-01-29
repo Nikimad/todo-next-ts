@@ -5,6 +5,7 @@ import ReduxProvider from "@/components/Redux";
 import Header from "@/components/Header";
 import Main from "@/components/Main";
 import Nav from "@/components/Nav";
+import Banner from "@/components/Banner";
 
 const hankenGrotesk = Funnel_Sans({
   subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function RootLayout({
           <Header>
             <Nav />
           </Header>
-          <Main>{children}</Main>
+          <Main>
+            {children}
+          </Main>
         </ReduxProvider>
       </body>
     </html>

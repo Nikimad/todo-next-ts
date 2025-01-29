@@ -9,7 +9,6 @@ const TodosPage = async ({
   const { boardId, taskId } = await params;
   return (
     <>
-      <h2>Todos</h2>
       <TodoCreator params={{ boardId, taskId }} />
       <Todos params={{ taskId }} />
     </>
