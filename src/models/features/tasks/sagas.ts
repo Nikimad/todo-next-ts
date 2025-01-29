@@ -13,6 +13,7 @@ function* addTaskSaga({ payload }: TaskPayloadAction) {
       ...newTodo,
     }));
   }
+  if (errors) {/*status reject*/}
 }
 
 function* updateTaskSaga({ payload }: TaskPayloadAction) {
@@ -25,6 +26,7 @@ function* updateTaskSaga({ payload }: TaskPayloadAction) {
       tasksActions.updateTaskSuccess({ id: payload.id, changes: editedTodo })
     );
   }
+  if (errors) {/*status reject*/}
 }
 
 function* removeTaskSaga({ payload }: TaskPayloadAction) {
@@ -32,6 +34,7 @@ function* removeTaskSaga({ payload }: TaskPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(tasksActions.removeTaskSuccess(payload.id));
   }
+  if (errors) {/*status reject*/}
 }
 
 export function* tasksWatcherSaga() {
