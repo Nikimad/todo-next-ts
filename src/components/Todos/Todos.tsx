@@ -10,7 +10,6 @@ interface TodosProps {
 const Todos = ({ todos }: TodosProps) => (
   <EntitiesList<TodoEntity>
     name="todo"
-    isQuery={false}
     isEmpty={todos.length === 0}
   >
     {todos.map((todo) => (
