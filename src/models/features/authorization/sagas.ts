@@ -2,10 +2,14 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { authorizationActions, AuthorizationDataPayloadAction } from ".";
 import { sign, logout, UserResponse, StatusResponse } from "./api";
 import { statusActions } from "../status";
+import { boardsActions } from "../boards";
 
 function* signSaga({ payload }: AuthorizationDataPayloadAction) {
   const [errors, user]: UserResponse = yield call(sign, payload);
-  if (user) yield put(authorizationActions.setUser(user));
+  if (user) {
+    yield put(authorizationActions.setUser(user));
+    yield put(boardsActions.getBoards());
+  }
   if (errors) yield put(authorizationActions.setErrors(errors));
 }
 
