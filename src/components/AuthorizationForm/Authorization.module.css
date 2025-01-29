@@ -1,3 +1,7 @@
+.form {
+    position: relative;
+}
+
 .form__spinner {
     position: absolute;
     top: 16px;

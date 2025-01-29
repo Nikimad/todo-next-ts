@@ -20,7 +20,7 @@ const AuthorizationForm = ({
   ref,
   onSubmit,
 }: Readonly<AuthorizationFormProps>) => (
-  <Form onSubmit={onSubmit} id="authorization" ref={ref}>
+  <Form onSubmit={onSubmit} id="authorization" className={s.form} ref={ref}>
     {isLoading && (
       <div className={s.form__spinner}>
         <Spinner />
