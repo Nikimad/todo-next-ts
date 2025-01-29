@@ -4,7 +4,7 @@ import {
   AuthorizationData,
 } from "@/models/features/authorization";
 
-import { JSX, useCallback } from "react";
+import {  useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { useAction, useAppSelector } from "@/models/hooks";
 import { authorizationSelectors } from "@/models/features/authorization/selectors";
