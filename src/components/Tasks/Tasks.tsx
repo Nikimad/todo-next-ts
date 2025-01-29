@@ -10,7 +10,6 @@ interface TasksProps {
 const Tasks = ({ tasks }: TasksProps) => (
   <EntitiesList<TaskEntity>
     name="task"
-    isQuery={false}
     isEmpty={tasks.length === 0}
   >
     {tasks.map((task) => (
