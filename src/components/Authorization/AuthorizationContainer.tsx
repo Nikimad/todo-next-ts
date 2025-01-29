@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/models/hooks";
 import { authorizationSelectors } from "@/models/features/authorization/selectors";
 import Authorization from "./Authorization";
+import Banner from "../Banner/Banner";
 
 const AuthorizationContainer = () => {
   const { replace } = useRouter();
@@ -16,7 +17,11 @@ const AuthorizationContainer = () => {
     if (isUserAuthorized) replace("/");
   }, [isUserAuthorized, replace]);
 
-  return !isUserAuthorized && <Authorization />;
+  return !isUserAuthorized ? (
+    <Authorization />
+  ) : (
+    <Banner message="Data is loading..." />
+  );
 };
 
 export default AuthorizationContainer;
