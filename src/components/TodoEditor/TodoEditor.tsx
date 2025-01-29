@@ -14,7 +14,7 @@ const TodoEditor = ({
   <div className={s.editor}>
     <Choice
       name="is_right"
-      defaultChecked={todo.is_right}
+      checked={todo.is_right}
       onChange={onComplete}
     >
       Complete
