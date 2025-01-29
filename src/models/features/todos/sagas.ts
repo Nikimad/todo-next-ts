@@ -16,6 +16,7 @@ function* addTodoSaga({ payload }: TodoPayloadAction) {
       })
     );
   }
+  if (errors) {/*status reject*/}
 }
 
 function* updateTodoSaga({ payload }: TodoPayloadAction) {
@@ -28,6 +29,7 @@ function* updateTodoSaga({ payload }: TodoPayloadAction) {
       todosActions.updateTodoSuccess({ id: payload.id, changes: editedTodo })
     );
   }
+  if (errors) {/*status reject*/}
 }
 
 function* removeTodoSaga({ payload }: TodoPayloadAction) {
@@ -35,6 +37,7 @@ function* removeTodoSaga({ payload }: TodoPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(todosActions.removeTodoSuccess(payload.id));
   }
+  if (errors) {/*status reject*/}
 }
 
 export function* todosWatcherSaga() {
