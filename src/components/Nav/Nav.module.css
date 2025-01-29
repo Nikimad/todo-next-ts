@@ -1,5 +1,14 @@
 .nav {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: var(--gap);
+    background-color: var(--bg-item);
+    border-radius: var(--br);
+    padding: 12px;
+}
+
+.nav__links {
+    display: flex;
+    gap: var(--gap);
+    margin-left: auto;
 }
