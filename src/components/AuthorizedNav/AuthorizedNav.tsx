@@ -8,21 +8,28 @@ type AuthorizedNavProps = {
 };
 
 const AuthorizedNav = ({ onLogout, params }: Readonly<AuthorizedNavProps>) => (
-  <nav className={s.nav}>
+  <>
     <div className={s.nav__path}>
-      {params.boardId && (
+      {params.boardId ? (
         <Link href="/" className="link">
           Boards
         </Link>
+      ) : (
+        <h2 className={s.nav__path__name}>Boards</h2>
       )}
-      {params.taskId && (
-        <Link href={`/${params.boardId}`} className="link">
-          Tasks
-        </Link>
+      {params.taskId ? (
+        <>
+          <Link href={`/${params.boardId}`} className="link">
+            Tasks
+          </Link>
+          <h2 className={s.nav__path__name}>Todos</h2>
+        </>
+      ) : (
+        params.boardId && <h2 className={s.nav__path__name}>Tasks</h2>
       )}
     </div>
     <Button onClick={onLogout}>Log out</Button>
-  </nav>
+  </>
 );
 
 export default AuthorizedNav;
