@@ -2,7 +2,7 @@
 
 import type { FetchResponse } from "@/models/helpers";
 import type { User, Status, AuthorizationData } from ".";
-import { _get, _post, _patch, _delete } from "@/lib/helpers/_fetch";
+import { _get, _post,  _delete } from "@/lib/helpers/_fetch";
 import { sessionAdapter } from "@/lib/helpers/sessionAdapter";
 
 export type UserResponse = FetchResponse<User>;
