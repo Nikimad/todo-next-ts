@@ -1,8 +1,9 @@
 import { BoardEntity } from "@/models/features/boards";
 
-const getBoard = (values: { [key: string]: string }): BoardEntity => ({
+const getBoard = (created_at: string) => (values: { [key: string]: string }): BoardEntity => ({
   id: values.id,
   title: values.title,
+  created_at,
 });
 
 export default getBoard;

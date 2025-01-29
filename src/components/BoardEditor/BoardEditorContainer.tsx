@@ -13,7 +13,7 @@ const BoardEditorContainer = ({ board }: { board: BoardEntity }) => (
     entity={board}
     sendAction={boardsActions.updateBoard}
     deleteAction={boardsActions.removeBoard}
-    getEntity={getBoard}
+    getEntity={getBoard(board.created_at)}
   >
     <BoardEditor board={board} />
   </EntityEditor>
