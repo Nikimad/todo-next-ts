@@ -4,6 +4,7 @@ import { tasksActions, type TaskEntity } from "../tasks";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
+import { authorizationActions } from "../authorization";
 
 export type TodoEntity = {
   boardId: BoardEntity["id"];
@@ -51,7 +52,8 @@ export const todosSlice = createSlice({
           (taskId) => state.entities[taskId].boardId == payload
         );
         todosAdapter.removeMany(state, removedTodosIds);
-      }),
+      })
+      .addCase(authorizationActions.logout, todosAdapter.removeAll),
 });
 
 export const todosActions = todosSlice.actions;
