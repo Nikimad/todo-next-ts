@@ -9,13 +9,14 @@ interface AuthorizationFieldProps extends React.ComponentProps<typeof Input> {
 
 const AuthorizationField = ({
   id,
+  type,
   name,
   errors,
   children,
 }: AuthorizationFieldProps) => (
   <label className={s.field}>
     {children}
-    <Input id={id} name={name} />
+    <Input id={id} type={type} name={name} />
     <ErrorMessage id={id} name={name} className={s.field__error} errors={errors} />
   </label>
 );

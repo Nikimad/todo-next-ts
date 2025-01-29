@@ -29,11 +29,17 @@ const AuthorizationForm = ({
     <AuthorizationField id="username" name="username" errors={errors}>
       Username
     </AuthorizationField>
-    <AuthorizationField name="password" id="password" errors={errors}>
+    <AuthorizationField
+      type="password"
+      name="password"
+      id="password"
+      errors={errors}
+    >
       Password
     </AuthorizationField>
     {isSignUp && (
       <AuthorizationField
+        type="password"
         name="password_confirmation"
         id="password_confirmation"
         errors={errors}
