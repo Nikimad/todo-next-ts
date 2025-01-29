@@ -3,6 +3,7 @@ import { boardsActions, type BoardEntity } from "../boards";
 
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
+import { authorizationActions } from "../authorization";
 
 export type TaskEntity = {
   id: string | number;
@@ -36,12 +37,14 @@ export const tasksSlice = createSlice({
     removeTaskSuccess: tasksAdapter.removeOne,
   },
   extraReducers: (builder) =>
-    builder.addCase(boardsActions.removeBoardSuccess, (state, { payload }) => {
-      const removedTasksIds = state.ids.filter(
-        (taskId) => state.entities[taskId].boardId == payload
-      );
-      tasksAdapter.removeMany(state, removedTasksIds);
-    }),
+    builder
+      .addCase(boardsActions.removeBoardSuccess, (state, { payload }) => {
+        const removedTasksIds = state.ids.filter(
+          (taskId) => state.entities[taskId].boardId == payload
+        );
+        tasksAdapter.removeMany(state, removedTasksIds);
+      })
+      .addCase(authorizationActions.logout, tasksAdapter.removeAll),
 });
 
 export const tasksActions = tasksSlice.actions;
