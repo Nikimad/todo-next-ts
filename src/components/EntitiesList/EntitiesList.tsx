@@ -3,7 +3,7 @@ import s from "./EntitiesList.module.css";
 
 interface EntitiesListProps<EntityType extends Entity> {
   name: EntityName<EntityType>;
-  isQuery: boolean;
+  isQuery?: boolean;
   isEmpty: boolean;
   children: React.ReactNode;
 }
