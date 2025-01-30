@@ -1,5 +1,7 @@
 .form {
     position: relative;
+    display: grid;
+    gap: var(--gap);
 }
 
 .form__spinner {
