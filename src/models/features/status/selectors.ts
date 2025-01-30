@@ -9,4 +9,5 @@ const selectStatusRoot = createSelector(
 
 export const statusSelectors = {
   selectIsOk: createSelector(selectStatusRoot, ({ isOk }) => isOk),
+  selectIsLoading: createSelector(selectStatusRoot, ({ isLoading }) => isLoading),
 };
