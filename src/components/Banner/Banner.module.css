@@ -1,8 +1,12 @@
 .banner {
+    position: relative;
     min-height: 165px;
     display: grid;
     place-content: center;
-    font-weight: bold;
     background-color: var(--bg-item);
     border-radius: var(--br);
+}
+
+.banner__message {
+    font-weight: bold;
 }

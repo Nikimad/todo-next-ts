@@ -2,15 +2,15 @@
 
 import { useAppSelector } from "@/models/hooks";
 import { authorizationSelectors } from "@/models/features/authorization/selectors";
-import Banner from "./Banner";
+import Banner, { type BannerProps } from "./Banner";
 
 const BannerContainer = ({
+  message,
   children,
-}: Readonly<{ children: React.ReactNode }>) => {
+}: BannerProps) => {
   const isUserAuthorized = useAppSelector(
     authorizationSelectors.selectIsUserAuthorized
   );
-  const message = ""; //status
 
   return !isUserAuthorized || message ? <Banner message={message} /> : children;
 };

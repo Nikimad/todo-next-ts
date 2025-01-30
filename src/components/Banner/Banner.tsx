@@ -1,10 +1,11 @@
 import s from "./Banner.module.css";
 
-type BannerProps = { message: string };
+export type BannerProps = Readonly<{ children?: React.ReactNode; message?: string }>;
 
-const Banner = ({ message }: Readonly<BannerProps>) => (
+const Banner = ({ message, children }: BannerProps) => (
   <div className={s.banner}>
-    <p>{message ? message : "Login is required to see the list"}</p>
+    <p className={s.banner__message}>{message ? message : "Login is required to see the list"}</p>
+    {children}
   </div>
 );
 
