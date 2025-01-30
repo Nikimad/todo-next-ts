@@ -1,12 +1,13 @@
 import type { FetchResponse } from "@/models/helpers";
-import type { TaskEntity, TaskStatus } from ".";
+import { EntityDeleteStatus } from "@/models";
+import type { TaskEntity } from ".";
 import { UnnormalTaskEntity } from "@/lib/normolizer/types";
 
 import { _post, _patch, _delete } from "@/lib/helpers/_fetch";
 import { boardsEndpoint } from "../boards/api";
 
 export type TaskEntityResponse = FetchResponse<UnnormalTaskEntity>;
-export type TaskStatusResponse = FetchResponse<TaskStatus>;
+export type TaskStatusResponse = FetchResponse<EntityDeleteStatus>;
 
 export const tasksEndpoint = "questions";
 

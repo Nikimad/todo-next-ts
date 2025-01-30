@@ -48,4 +48,8 @@ export type EntityName<EntityType extends Entity> = keyof {
     EntityType,
     Name
   >]: Entities[Name];
-};; 
+};
+
+export type EntityDeleteStatus = {
+  status: string;
+};

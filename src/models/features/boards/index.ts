@@ -9,10 +9,6 @@ export type BoardEntity = {
   created_at: string;
 };
 
-export type BoardStatus = {
-  status: string;
-}; //@duplicate: TaskStatus, TodoStatus
-
 export type BoardPayloadAction = PayloadAction<BoardEntity>;
 
 export const boardsAdapter = createEntityAdapter<BoardEntity>({

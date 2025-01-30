@@ -12,10 +12,6 @@ export type TaskEntity = {
   question_type: "multiple";
 };
 
-export type TaskStatus = {
-  status: string;
-}; //@duplicate: BoardStatus, TodoStatus
-
 export type TaskPayloadAction = PayloadAction<TaskEntity>;
 
 export const tasksAdapter = createEntityAdapter<TaskEntity>();

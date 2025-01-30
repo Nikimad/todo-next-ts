@@ -14,12 +14,7 @@ export type TodoEntity = {
   is_right: boolean;
 };
 
-export type TodoStatus = {
-  status: string;
-}; //@duplicate: BoardStatus, TaskStatus
-
 export type TodoPayloadAction = PayloadAction<TodoEntity>;
-export type TasksIdsPayloadAction = PayloadAction<TaskEntity["id"][]>;
 
 export const todosAdapter = createEntityAdapter<TodoEntity>();
 

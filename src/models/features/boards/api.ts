@@ -1,12 +1,13 @@
 import type { FetchResponse } from "@/models/helpers";
-import type { BoardEntity, BoardStatus } from ".";
+import { EntityDeleteStatus } from "@/models";
+import type { BoardEntity  } from ".";
 import { UnnormalBoardEntity, UnnormalData } from "@/lib/normolizer/types";
 
 import { _get, _post, _patch, _delete } from "@/lib/helpers/_fetch";
 
 export type UnnormalDataResponse = FetchResponse<UnnormalData>;
 export type BoardEntityResponse = FetchResponse<UnnormalBoardEntity>;
-export type BoardStatusResponse = FetchResponse<BoardStatus>;
+export type BoardStatusResponse = FetchResponse<EntityDeleteStatus>;
 
 export const boardsEndpoint = "tests";
 
