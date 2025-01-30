@@ -2,9 +2,10 @@ import type { TodoPayloadAction } from ".";
 import type { TodoEntityResponse, TodoStatusResponse } from "./api";
 
 import { call, put, takeEvery } from "redux-saga/effects";
-import { todosActions } from ".";
 import { createTodo, editTodo, deleteTodo } from "./api";
 import normalizeTodo from "@/lib/normolizer/normalizeTodo";
+import { todosActions } from ".";
+import { statusActions } from "../status";
 
 function* addTodoSaga({ payload }: TodoPayloadAction) {
   const [errors, newTodo]: TodoEntityResponse = yield call(createTodo, payload);
@@ -18,9 +19,7 @@ function* addTodoSaga({ payload }: TodoPayloadAction) {
       )
     );
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* updateTodoSaga({ payload }: TodoPayloadAction) {
@@ -39,9 +38,7 @@ function* updateTodoSaga({ payload }: TodoPayloadAction) {
       })
     );
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* removeTodoSaga({ payload }: TodoPayloadAction) {
@@ -49,9 +46,7 @@ function* removeTodoSaga({ payload }: TodoPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(todosActions.removeTodoSuccess(payload.id));
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) if (errors) yield put(statusActions.setStatus(errors));
 }
 
 export function* todosWatcherSaga() {

@@ -58,7 +58,6 @@ export const authorizationSlice = createSlice({
       state.user = payload;
     },
     setErrors: (state, { payload }: PayloadAction<Errors>) => {
-      console.log(payload);
       state.isLoading = false;
       state.errors = payload;
     },

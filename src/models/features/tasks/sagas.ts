@@ -2,9 +2,10 @@ import type { TaskPayloadAction } from ".";
 import type { TaskEntityResponse, TaskStatusResponse } from "./api";
 
 import { call, put, takeEvery } from "redux-saga/effects";
-import { tasksActions } from ".";
 import { createTask, editTask, deleteTask } from "./api";
 import normalizeTask from "@/lib/normolizer/normalizeTask";
+import { tasksActions } from ".";
+import { statusActions } from "../status";
 
 function* addTaskSaga({ payload }: TaskPayloadAction) {
   const [errors, newTask]: TaskEntityResponse = yield call(createTask, payload);
@@ -15,9 +16,7 @@ function* addTaskSaga({ payload }: TaskPayloadAction) {
       )
     );
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* updateTaskSaga({ payload }: TaskPayloadAction) {
@@ -33,9 +32,7 @@ function* updateTaskSaga({ payload }: TaskPayloadAction) {
       })
     );
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* removeTaskSaga({ payload }: TaskPayloadAction) {
@@ -43,9 +40,7 @@ function* removeTaskSaga({ payload }: TaskPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(tasksActions.removeTaskSuccess(payload.id));
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 export function* tasksWatcherSaga() {

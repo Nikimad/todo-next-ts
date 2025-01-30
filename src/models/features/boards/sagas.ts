@@ -12,6 +12,7 @@ import normalizeData from "@/lib/normolizer/normalizeData";
 import normalizeBoard from "@/lib/normolizer/normalizeBoard";
 import { tasksActions } from "../tasks";
 import { todosActions } from "../todos";
+import { statusActions } from "../status";
 
 function* getBoardsSaga() {
   const [errors, data]: UnnormalDataResponse = yield call(getBoards);
@@ -21,9 +22,7 @@ function* getBoardsSaga() {
     yield put(tasksActions.setTasks(nomalizedData.tasks));
     yield put(todosActions.setTodos(nomalizedData.todos));
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* addBoardSaga({ payload }: BoardPayloadAction) {
@@ -34,9 +33,7 @@ function* addBoardSaga({ payload }: BoardPayloadAction) {
   if (newBoard) {
     yield put(boardsActions.addBoardSuccess(normalizeBoard(newBoard, {})));
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* updateBoardSaga({ payload }: BoardPayloadAction) {
@@ -52,9 +49,7 @@ function* updateBoardSaga({ payload }: BoardPayloadAction) {
       })
     );
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 function* removeBoardSaga({ payload }: BoardPayloadAction) {
@@ -62,9 +57,7 @@ function* removeBoardSaga({ payload }: BoardPayloadAction) {
   if (meta && meta.status === "ok") {
     yield put(boardsActions.removeBoardSuccess(payload.id));
   }
-  if (errors) {
-    /*status reject*/
-  }
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 export function* boardsWatcherSaga() {

@@ -16,7 +16,7 @@ function* signSaga({ payload }: AuthorizationDataPayloadAction) {
 function* logoutSaga() {
   const [errors, status]: StatusResponse = yield call(logout);
   if (status?.success) yield put(authorizationActions.setUser(null));
-  if (errors) yield put(statusActions.setStatusReject());
+  if (errors) yield put(statusActions.setStatus(errors));
 }
 
 export function* authorizationWatcherSaga() {
