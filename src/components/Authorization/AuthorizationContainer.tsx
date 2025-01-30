@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/models/hooks";
 import { authorizationSelectors } from "@/models/features/authorization/selectors";
 import Authorization from "./Authorization";
-import Banner from "../Banner/Banner";
+import Banner from "../Banner";
 
 const AuthorizationContainer = () => {
   const { replace } = useRouter();
