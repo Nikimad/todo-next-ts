@@ -1,4 +1,4 @@
-import type { TaskEntity } from "@/models/features/tasks";
+import type { TaskEntity } from "@/models/types/entities";
 
 import EntitiesList from "../EntitiesList";
 import TaskEditor from "../TaskEditor";

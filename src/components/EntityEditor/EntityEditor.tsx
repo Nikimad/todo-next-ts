@@ -1,5 +1,5 @@
 import type { EntityProps, Errors } from "@/lib/types";
-import type { Entity } from "@/models";
+import type { Entity } from "@/models/types/entities";
 import type { FormProps } from "../Form";
 
 import Form from "../Form";

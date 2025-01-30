@@ -1,5 +1,5 @@
-import { UnnormalEntityParam, UnnormalBoardEntity } from "./types";
-import { BoardEntity } from "@/models/features/boards";
+import { UnnormalBoardEntity, BoardEntity } from "@/models/types/entities";
+import { UnnormalEntityParam  } from "./types";
 
 export type AdditionalBoardProps = {
   created_at?: string;

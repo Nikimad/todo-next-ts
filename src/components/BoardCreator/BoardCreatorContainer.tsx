@@ -1,6 +1,6 @@
 "use client";
 
-import type { BoardEntity } from "@/models/features/boards";
+import type { BoardEntity } from "@/models/types/entities";
 
 import { boardsActions } from "@/models/features/boards";
 import getBoard from "@/lib/normolizer/getBoard";

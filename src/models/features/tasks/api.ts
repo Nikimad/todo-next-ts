@@ -1,7 +1,9 @@
 import type { FetchResponse } from "@/models/helpers";
-import { EntityDeleteStatus } from "@/models";
-import type { TaskEntity } from ".";
-import { UnnormalTaskEntity } from "@/lib/normolizer/types";
+import {
+  EntityDeleteStatus,
+  UnnormalTaskEntity,
+  TaskEntity,
+} from "@/models/types/entities";
 
 import { _post, _patch, _delete } from "@/lib/helpers/_fetch";
 import { boardsEndpoint } from "../boards/api";

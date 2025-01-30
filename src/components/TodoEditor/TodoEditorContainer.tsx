@@ -1,6 +1,6 @@
 "use client";
 
-import type { TodoEntity } from "@/models/features/todos";
+import type { TodoEntity } from "@/models/types/entities";
 
 import { useAction } from "@/models/hooks";
 import { useCallback } from "react";

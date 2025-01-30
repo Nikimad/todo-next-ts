@@ -2,7 +2,7 @@
 
 import type { JSX } from "react";
 import { EntityFormContainerProps, EntityProps } from "@/lib/types";
-import { Entity } from "@/models";
+import { Entity } from "@/models/types/entities";
 
 import { useCallback } from "react";
 import handleForm from "@/lib/helpers/handleForm";

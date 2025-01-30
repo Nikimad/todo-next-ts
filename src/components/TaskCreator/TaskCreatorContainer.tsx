@@ -1,9 +1,9 @@
 "use client";
 
-import { tasksActions, type TaskEntity } from "@/models/features/tasks";
-
-import EntityCreator from "../EntityCreator";
+import type { TaskEntity } from "@/models/types/entities";
+import { tasksActions } from "@/models/features/tasks";
 import getTask from "@/lib/normolizer/getTask";
+import EntityCreator from "../EntityCreator";
 
 const TaskCreatorContainer = ({
   params: { boardId },

@@ -1,4 +1,4 @@
-import { BoardEntity } from "@/models/features/boards";
+import { BoardEntity } from "@/models/types/entities";
 
 import EntitiesList from "../EntitiesList";
 import BoardEditor from "../BoardEditor";

@@ -1,5 +1,5 @@
-import { UnnormalEntityParam, UnnormalTodoEntity } from "./types";
-import { TodoEntity } from "@/models/features/todos";
+import { UnnormalTodoEntity, TodoEntity } from "@/models/types/entities";
+import { UnnormalEntityParam } from "./types";
 
 export type AdditionalTodoProps = {
   boardId: TodoEntity["boardId"];

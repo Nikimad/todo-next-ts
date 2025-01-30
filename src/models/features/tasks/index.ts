@@ -1,16 +1,9 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { boardsActions, type BoardEntity } from "../boards";
-
+import { TaskEntity } from "@/models/types/entities";
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
+import { boardsActions} from "../boards";
 import { authorizationActions } from "../authorization";
-
-export type TaskEntity = {
-  id: string | number;
-  boardId: BoardEntity["id"];
-  title: string;
-  question_type: "multiple";
-};
 
 export type TaskPayloadAction = PayloadAction<TaskEntity>;
 

@@ -1,4 +1,5 @@
-import { UnnormalEntityParam, UnnormalTodoEntity } from "./types";
+import { UnnormalTodoEntity } from "@/models/types/entities";
+import { UnnormalEntityParam } from "./types";
 import { AdditionalTodoProps } from "./normalizeTodo";
 import normalizeTodo from "./normalizeTodo";
 

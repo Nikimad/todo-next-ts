@@ -1,4 +1,4 @@
-import { BoardEntity } from "@/models/features/boards";
+import { BoardEntity } from "@/models/types/entities";
 import EntityLink from "../EntityLink";
 
 const BoardEditor = ({ board }: { board: BoardEntity }) => (

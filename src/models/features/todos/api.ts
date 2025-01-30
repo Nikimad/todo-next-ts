@@ -1,13 +1,14 @@
 import type { FetchResponse } from "@/models/helpers";
-import type { TodoEntity } from ".";
-import type { EntityDeleteStatus } from "@/models";
-
+import type {
+  EntityDeleteStatus,
+  UnnormalTodoEntity,
+  TodoEntity,
+} from "@/models/types/entities";
 import { _post, _patch, _delete } from "@/lib/helpers/_fetch";
 import { tasksEndpoint } from "../tasks/api";
-import { UnnormalTodoEntity } from "@/lib/normolizer/types";
 
 export type TodoEntityResponse = FetchResponse<UnnormalTodoEntity>;
-export type  TodoStatusResponse = FetchResponse<EntityDeleteStatus>;
+export type TodoStatusResponse = FetchResponse<EntityDeleteStatus>;
 
 const todosEndpoint = "answers";
 

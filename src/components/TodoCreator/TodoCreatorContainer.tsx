@@ -1,9 +1,9 @@
 "use client";
 
-import { todosActions, type TodoEntity } from "@/models/features/todos";
-
-import EntityCreator from "../EntityCreator";
+import type { TodoEntity } from "@/models/types/entities";
+import { todosActions} from "@/models/features/todos";
 import getTodo from "@/lib/normolizer/getTodo";
+import EntityCreator from "../EntityCreator";
 
 const TodoCreatorContainer = ({
   params: { boardId, taskId },

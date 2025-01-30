@@ -1,4 +1,4 @@
-import type { Entity, EntityName } from "@/models";
+import type { Entity, EntityName } from "@/models/types/entities";
 import s from "./EntitiesList.module.css";
 
 interface EntitiesListProps<EntityType extends Entity> {

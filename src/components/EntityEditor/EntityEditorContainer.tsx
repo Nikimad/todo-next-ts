@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import type { Entity } from "@/models";
+import type { Entity } from "@/models/types/entities";
 import type { EntityProps, EntityFormContainerProps } from "@/lib/types";
 
 import React, { useCallback, useState } from "react";

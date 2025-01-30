@@ -1,5 +1,5 @@
-import { Entity, EntityName } from "@/models";
 import { PayloadActionCreator } from "@reduxjs/toolkit";
+import { Entity, EntityName } from "@/models/types/entities";
 
 export type SetCookies = string[];
 export type ScopeKey = string;

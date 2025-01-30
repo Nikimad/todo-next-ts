@@ -1,4 +1,4 @@
-import type { TodoEntity } from "@/models/features/todos";
+import type { TodoEntity } from "@/models/types/entities";
 
 import EntitiesList from "../EntitiesList";
 import TodoEditor from "../TodoEditor";

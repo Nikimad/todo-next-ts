@@ -1,18 +1,11 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { BoardEntity, boardsActions } from "../boards";
-import { tasksActions, type TaskEntity } from "../tasks";
-
+import { TodoEntity } from "@/models/types/entities";
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
+import { boardsActions } from "../boards";
+import { tasksActions } from "../tasks";
 import { authorizationActions } from "../authorization";
 
-export type TodoEntity = {
-  boardId: BoardEntity["id"];
-  taskId: TaskEntity["id"];
-  id: string | number;
-  text: string;
-  is_right: boolean;
-};
 
 export type TodoPayloadAction = PayloadAction<TodoEntity>;
 

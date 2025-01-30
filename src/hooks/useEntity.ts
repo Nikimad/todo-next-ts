@@ -1,6 +1,6 @@
 import type { PayloadActionCreator } from "@reduxjs/toolkit";
 import type { Errors } from "@/lib/types";
-import type { Entity } from "@/models";
+import type { Entity } from "@/models/types/entities";
 
 import { useState, useCallback } from "react";
 import { useAction } from "@/models/hooks";

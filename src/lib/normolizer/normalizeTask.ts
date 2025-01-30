@@ -1,5 +1,5 @@
-import { UnnormalEntityParam, UnnormalTaskEntity } from "./types";
-import { TaskEntity } from "@/models/features/tasks";
+import { UnnormalTaskEntity, TaskEntity } from "@/models/types/entities";
+import { UnnormalEntityParam } from "./types";
 
 export type AdditionalTaskProps = {
   boardId: TaskEntity["boardId"];

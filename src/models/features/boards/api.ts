@@ -1,7 +1,10 @@
 import type { FetchResponse } from "@/models/helpers";
-import { EntityDeleteStatus } from "@/models";
-import type { BoardEntity  } from ".";
-import { UnnormalBoardEntity, UnnormalData } from "@/lib/normolizer/types";
+import type {
+  EntityDeleteStatus,
+  BoardEntity,
+  UnnormalBoardEntity,
+} from "@/models/types/entities";
+import { UnnormalData } from "@/lib/normolizer/types";
 
 import { _get, _post, _patch, _delete } from "@/lib/helpers/_fetch";
 

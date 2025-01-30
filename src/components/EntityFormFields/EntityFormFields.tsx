@@ -1,4 +1,4 @@
-import type { Entity } from "@/models";
+import type { Entity } from "@/models/types/entities";
 import type { EntityProps, Errors } from "@/lib/types";
 
 import Input from "../Input";

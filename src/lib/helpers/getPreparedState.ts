@@ -1,7 +1,5 @@
 import { User } from "@/models/features/authorization";
-import { BoardEntity } from "@/models/features/boards";
-import { TaskEntity } from "@/models/features/tasks";
-import { TodoEntity } from "@/models/features/todos";
+import { BoardEntity, TodoEntity, TaskEntity } from "@/models/types/entities";
 import { Errors } from "../types";
 import { UnnormalData } from "../normolizer/types"; 
 import { getUser } from "@/models/features/authorization/api";

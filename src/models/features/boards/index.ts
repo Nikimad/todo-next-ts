@@ -1,13 +1,8 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { BoardEntity } from "@/models/types/entities";
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import getDelegateCreator from "@/lib/helpers/getDelegateCreator";
 import { authorizationActions } from "../authorization";
-
-export type BoardEntity = {
-  id: string | number;
-  title: string;
-  created_at: string;
-};
 
 export type BoardPayloadAction = PayloadAction<BoardEntity>;
 

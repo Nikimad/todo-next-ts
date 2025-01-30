@@ -1,4 +1,5 @@
-import { UnnormalEntityParam, UnnormalTaskEntity } from "./types";
+import { UnnormalTaskEntity } from "@/models/types/entities";
+import { UnnormalEntityParam } from "./types";
 import { AdditionalTaskProps } from "./normalizeTask";
 import normalizeTask from "./normalizeTask";
 

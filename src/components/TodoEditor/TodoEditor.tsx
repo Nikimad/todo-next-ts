@@ -1,4 +1,4 @@
-import { TodoEntity } from "@/models/features/todos";
+import { TodoEntity } from "@/models/types/entities";
 
 import EntityLink from "../EntityLink";
 import Choice from "../Choice";

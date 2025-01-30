@@ -1,10 +1,10 @@
 "use client";
 
-import type { TaskEntity } from "@/models/features/tasks";
+import type { TaskEntity } from "@/models/types/entities";
 
 import { tasksActions } from "@/models/features/tasks";
-import EntityEditor from "../EntityEditor";
 import getTask from "@/lib/normolizer/getTask";
+import EntityEditor from "../EntityEditor";
 import TaskEditor from "./TaskEditor";
 
 const TaskEditorContainer = ({ task }: { task: TaskEntity }) => (
