@@ -8,8 +8,6 @@ const ReduxProviderContainer = async ({
 }) => {
   const initialState = await getPreparedState();
 
-  if (initialState.errors) return null;
-
   return (
     <ReduxProvider initialState={initialState}>
       {children}
