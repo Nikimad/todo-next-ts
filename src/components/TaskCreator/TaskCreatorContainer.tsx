@@ -12,7 +12,7 @@ const TaskCreatorContainer = ({
 }) => {
   const taskDraft: TaskEntity = {
     boardId,
-    id: crypto.randomUUID(),
+    id: "taskDraftId",
     title: "",
     question_type: "multiple",
   };

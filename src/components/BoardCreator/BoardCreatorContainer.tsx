@@ -8,17 +8,19 @@ import EntityCreator from "../EntityCreator";
 
 const BoardCreatorContainer = () => {
   const boardDraft: BoardEntity = {
-    id: crypto.randomUUID(),
+    id: "boardDraftId",
     title: "",
-    created_at: Date.now().toLocaleString(),
+    created_at: "",
   };
 
-  return <EntityCreator<BoardEntity>
-    entityName="board"
-    entity={boardDraft}
-    sendAction={boardsActions.addBoard}
-    getEntity={getBoard({})}
-  />
+  return (
+    <EntityCreator<BoardEntity>
+      entityName="board"
+      entity={boardDraft}
+      sendAction={boardsActions.addBoard}
+      getEntity={getBoard({})}
+    />
+  );
 };
 
 export default BoardCreatorContainer;

@@ -13,7 +13,7 @@ const TodoCreatorContainer = ({
   const todoDraft: TodoEntity = {
     boardId,
     taskId,
-    id: crypto.randomUUID(),
+    id: "todoDraftId",
     text: "",
     is_right: false,
   };
