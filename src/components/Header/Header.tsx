@@ -4,7 +4,7 @@ const Header = ({
   isHidden,
   children,
 }: Readonly<{ isHidden: boolean; children: React.ReactNode }>) => (
-  <header className={`${s.header} ${isHidden ? s.header_hidden : ""}`}>
+  <header inert={isHidden} className={`${s.header} ${isHidden ? s.header_hidden : ""}`}>
     {children}
   </header>
 );
